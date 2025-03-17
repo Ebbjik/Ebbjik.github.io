@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>github＆clash-verge</title>
+      <link href="/2025/03/17/github%EF%BC%86clash-verge/"/>
+      <url>/2025/03/17/github%EF%BC%86clash-verge/</url>
+      
+        <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>因为众所周知的原因，国内无法直连github</p><p>这就导致国内的开发者很难使用github的服务，在一些情况下，clash这样的代理软件打开后虽然浏览器可以访问github，但是 <code>git push</code>和 <code>git pull</code>这些命令却不能正常使用</p><h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><h2 id="代理查询"><a href="#代理查询" class="headerlink" title="代理查询"></a>代理查询</h2><p>首先我们在输入以下命令</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global http.proxy</span><br>git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global https.proxy</span><br></code></pre></td></tr></table></figure><p>这可以检测我们是否使用了git 代理</p><h2 id="代理取消"><a href="#代理取消" class="headerlink" title="代理取消"></a>代理取消</h2><p>如果使用了的话，我们需要先取消它们<br>通过以下命令实现</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> http<span class="hljs-selector-class">.proxy</span><br>git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> https.proxy<br></code></pre></td></tr></table></figure><p>运行完成后再次使用代理检测中的命令检测是否取消成功</p><h2 id="重新设置代理"><a href="#重新设置代理" class="headerlink" title="重新设置代理"></a>重新设置代理</h2><p>首先我们要知道自己的代理软件的服务器地址，一般为 <code>127.0.0.1:****</code><br><code>****</code>为端口号，这个需要查看自己的软件，不能照搬<br><img src="/./images/github%EF%BC%86clash-verge/1742198026901.png"><br>从这里可以看出我的端口是 <code>7897</code>，则需要运行以下命令</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global http.proxy 127.0.0.1:7897</span><br>git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global https.proxy 127.0.0.1:7897</span><br></code></pre></td></tr></table></figure><p>命令运行后可再次运行检测代理命令来查看是否设置成功</p><h2 id="设置完成"><a href="#设置完成" class="headerlink" title="设置完成"></a>设置完成</h2><p>至此，设置完成，就可以正常推送拉取</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>记一次失败的linux</title>
+      <link href="/2025/03/16/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84linux/"/>
+      <url>/2025/03/16/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84linux/</url>
+      
+        <content type="html"><![CDATA[<h1 id="事情起因"><a href="#事情起因" class="headerlink" title="事情起因"></a>事情起因</h1><p>经过在移动硬盘安装linux mint并顺利在笔记本运行后，虾决定在即将组装的主机上安装arch linux 并安装hyprland，然而事情并没有想象中那么顺利</p><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在安装arch的过程中，教程可以通过命令行连接到wifi，而我不行，后来是通过usb线从手机联网的（其实这里就应该意识到的），在安装上后，发现压根没有wifi按钮，意识到，没有驱动，而linux的驱动似乎不生效，主板官网的驱动也只支持windows<br>ps：主板用的华硕 b650 ayw，上面的网卡是 联发科 7902<br>也想过买一个免驱动的usb无线网卡，而市面上的大多数都只支持到6.5版本的内核，而我安装的ubuntu 24.04 内核版本为6.11，没有可用的</p><h1 id="最后的决定"><a href="#最后的决定" class="headerlink" title="最后的决定"></a>最后的决定</h1><p>在多次尝试无果后，决定放弃，台式机的硬件不比笔记本，在安装中会遇到各种各样的问题，最后决定用回windows</p><h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>Q：为什么想要linux？<br>A：并不是因为linux的低占用或是炫酷的hyprland，主要是身为一名代码开发者，我需要在电脑上安装各种各样的开发环境，而windows的安装体验令我痛苦不已，相比linux只需一行<code> apt install</code>或是<code>pacman -S install</code>就可以解决的事情，在windows上的安装简直就是折磨。即使这次用回windows，我也不会再通过那种方法进行开发</p><p>Q：那你要怎么做<br>A：docker，在vscode存在插件允许我们在容器内进行代码开发，这样一来就不必在windows配置开发环境，对环境的更换也方便得多，也不必担心不同开发环境中的冲突（这个题材将会在后续发数个博客，给自己立flag）</p><h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>此次失败的原因主要是没有实现了解所买硬件对linux的支持情况，谨以此文章警示以后的自己和其他想要安装linux的人</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2025/03/11/hello-world/"/>
+      <url>/2025/03/11/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
