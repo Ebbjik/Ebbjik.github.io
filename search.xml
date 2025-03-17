@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>记一次失败的linux</title>
+      <link href="/2025/03/16/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84linux/"/>
+      <url>/2025/03/16/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84linux/</url>
+      
+        <content type="html"><![CDATA[<h1 id="事情起因"><a href="#事情起因" class="headerlink" title="事情起因"></a>事情起因</h1><p>经过在移动硬盘安装linux mint并顺利在笔记本运行后，虾决定在即将组装的主机上安装arch linux 并安装hyprland，然而事情并没有想象中那么顺利</p><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在安装arch的过程中，教程可以通过命令行连接到wifi，而我不行，后来是通过usb线从手机联网的（其实这里就应该意识到的），在安装上后，发现压根没有wifi按钮，意识到，没有驱动，而linux的驱动似乎不生效，主板官网的驱动也只支持windows<br>ps：主板用的华硕 b650 ayw，上面的网卡是 联发科 7902<br>也想过买一个免驱动的usb无线网卡，而市面上的大多数都只支持到6.5版本的内核，而我安装的ubuntu 24.04 内核版本为6.11，没有可用的</p><h1 id="最后的决定"><a href="#最后的决定" class="headerlink" title="最后的决定"></a>最后的决定</h1><p>在多次尝试无果后，决定放弃，台式机的硬件不比笔记本，在安装中会遇到各种各样的问题，最后决定用回windows</p><h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>Q：为什么想要linux？<br>A：并不是因为linux的低占用或是炫酷的hyprland，主要是身为一名代码开发者，我需要在电脑上安装各种各样的开发环境，而windows的安装体验令我痛苦不已，相比linux只需一行<code> apt install</code>或是<code>pacman -S install</code>就可以解决的事情，在windows上的安装简直就是折磨。即使这次用回windows，我也不会再通过那种方法进行开发</p><p>Q：那你要怎么做<br>A：docker，在vscode存在插件允许我们在容器内进行代码开发，这样一来就不必在windows配置开发环境，对环境的更换也方便得多，也不必担心不同开发环境中的冲突（这个题材将会在后续发数个博客，给自己立flag）</p><h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>此次失败的原因主要是没有实现了解所买硬件对linux的支持情况，谨以此文章警示以后的自己和其他想要安装linux的人</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> -linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2025/03/16/hello-world/"/>
       <url>/2025/03/16/hello-world/</url>
