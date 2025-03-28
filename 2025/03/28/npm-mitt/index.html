@@ -19,24 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="问题描述因为众所周知的原因，国内无法直连github 这就导致国内的开发者很难使用github的服务，在一些情况下，clash这样的代理软件打开后虽然浏览器可以访问github，但是 git push和 git pull这些命令却不能正常使用 问题解决代理查询首先我们在输入以下命令 12git config --global http.proxygit config --global https.">
+    <meta name="description" content="这篇文章用于记录一个很有用的组件间通信的库&#x3D;&#x3D;mitt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github＆clash-verge">
-<meta property="og:url" content="http://example.com/2025/03/17/github%EF%BC%86clash-verge/index.html">
+<meta property="og:title" content="npm_mitt">
+<meta property="og:url" content="http://example.com/2025/03/28/npm-mitt/index.html">
 <meta property="og:site_name" content="虾写的blogs">
-<meta property="og:description" content="问题描述因为众所周知的原因，国内无法直连github 这就导致国内的开发者很难使用github的服务，在一些情况下，clash这样的代理软件打开后虽然浏览器可以访问github，但是 git push和 git pull这些命令却不能正常使用 问题解决代理查询首先我们在输入以下命令 12git config --global http.proxygit config --global https.">
+<meta property="og:description" content="这篇文章用于记录一个很有用的组件间通信的库&#x3D;&#x3D;mitt">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2025/03/17/github%EF%BC%86clash-verge/1742198026901.png">
-<meta property="article:published_time" content="2025-03-17T06:38:48.000Z">
-<meta property="article:modified_time" content="2025-03-28T07:53:44.226Z">
+<meta property="article:published_time" content="2025-03-28T07:54:11.000Z">
+<meta property="article:modified_time" content="2025-03-28T08:10:02.312Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="github">
+<meta property="article:tag" content="npm vue3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2025/03/17/github%EF%BC%86clash-verge/1742198026901.png">
   
   
   
-  <title>github＆clash-verge - 虾写的blogs</title>
+  <title>npm_mitt - 虾写的blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="github＆clash-verge"></span>
+            <span id="subtitle" data-typed-text="npm_mitt"></span>
           
         </div>
 
@@ -214,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-17 14:38" pubdate>
-          2025年3月17日 下午
+        <time datetime="2025-03-28 15:54" pubdate>
+          2025年3月28日 下午
         </time>
       </span>
     
@@ -226,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          306 字
+          297 字
         
       </span>
     
@@ -274,26 +272,37 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">github＆clash-verge</h1>
+            <h1 id="seo-header">npm_mitt</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>因为众所周知的原因，国内无法直连github</p>
-<p>这就导致国内的开发者很难使用github的服务，在一些情况下，clash这样的代理软件打开后虽然浏览器可以访问github，但是 <code>git push</code>和 <code>git pull</code>这些命令却不能正常使用</p>
-<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><h2 id="代理查询"><a href="#代理查询" class="headerlink" title="代理查询"></a>代理查询</h2><p>首先我们在输入以下命令</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global http.proxy</span><br>git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global https.proxy</span><br></code></pre></td></tr></table></figure>
+                <p>这篇文章用于记录一个很有用的组件间通信的库&#x3D;&#x3D;mitt</p>
+<span id="more"></span>
 
-<p>这可以检测我们是否使用了git 代理</p>
-<h2 id="代理取消"><a href="#代理取消" class="headerlink" title="代理取消"></a>代理取消</h2><p>如果使用了的话，我们需要先取消它们<br>通过以下命令实现</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> http<span class="hljs-selector-class">.proxy</span><br>git config <span class="hljs-attr">--global</span> <span class="hljs-attr">--unset</span> https.proxy<br></code></pre></td></tr></table></figure>
+<h1 id="什么是mitt"><a href="#什么是mitt" class="headerlink" title="什么是mitt"></a>什么是mitt</h1><p>mitt是一个轻量级的、零依赖的、事件驱动的库，用于在组件之间进行通信。它提供了一个简单的方式来发送和接收事件，而不需要依赖复杂的框架或库。</p>
+<p>可以做到：</p>
+<ul>
+<li>组件间通信</li>
+<li>父子组件通信</li>
+<li>兄弟组件通信</li>
+<li>跨级组件通信</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install --save mitt<br></code></pre></td></tr></table></figure>
 
-<p>运行完成后再次使用代理检测中的命令检测是否取消成功</p>
-<h2 id="重新设置代理"><a href="#重新设置代理" class="headerlink" title="重新设置代理"></a>重新设置代理</h2><p>首先我们要知道自己的代理软件的服务器地址，一般为 <code>127.0.0.1:****</code><br><code>****</code>为端口号，这个需要查看自己的软件，不能照搬<br><img src="/2025/03/17/github%EF%BC%86clash-verge/1742198026901.png" srcset="/img/loading.gif" lazyload><br>从这里可以看出我的端口是 <code>7897</code>，则需要运行以下命令</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global http.proxy 127.0.0.1:7897</span><br>git <span class="hljs-built_in">config</span> <span class="hljs-comment">--global https.proxy 127.0.0.1:7897</span><br></code></pre></td></tr></table></figure>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> mitt <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mitt&#x27;</span>  <span class="hljs-comment">// 引入mitt</span><br><br><span class="hljs-keyword">const</span> emitter = <span class="hljs-title function_">mitt</span>()  <span class="hljs-comment">// 创建emitter实例</span><br><br><span class="hljs-comment">// 发送事件</span><br>emitter.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;hello&#x27;</span>)<br><br><span class="hljs-comment">// 监听事件</span><br>emitter.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<p>命令运行后可再次运行检测代理命令来查看是否设置成功</p>
-<h2 id="设置完成"><a href="#设置完成" class="headerlink" title="设置完成"></a>设置完成</h2><p>至此，设置完成，就可以正常推送拉取</p>
+<p>具体解释：</p>
+<ul>
+<li><p>监听事件：emitter.on(‘test’, (data) &#x3D;&gt; {<br>console.log(data)<br>})</p>
+<p>其中test是事件名，这个名字可以自定义，(data) &#x3D;&gt; {<br>  console.log(data)<br>}是事件回调函数，即在其他地方通过这个名字，就可以触发这个回调函数<br>也可以写成这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params">data</span>) =&gt; &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)<br>&#125;<br><br>emitter.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;test&#x27;</span>, fn)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>发送事件：emitter.emit(‘test’, ‘hello’)</p>
+<p>其中test是事件名，hello是事件参数</p>
+<p>根据事件名，可以发送多个参数，视监听时间时绑定的函数而定</p>
+</li>
+</ul>
 
                 
               </div>
@@ -302,32 +311,11 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/github/" class="print-no-link">#github</a>
+        <a href="/tags/npm-vue3/" class="print-no-link">#npm vue3</a>
       
     </div>
   
@@ -339,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>github＆clash-verge</div>
-      <div>http://example.com/2025/03/17/github＆clash-verge/</div>
+      <div>npm_mitt</div>
+      <div>http://example.com/2025/03/28/npm-mitt/</div>
     </div>
     <div class="license-meta">
       
@@ -352,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月17日</div>
+          <div>2025年3月28日</div>
         </div>
       
       
@@ -384,18 +372,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/22/SvelteKit-day1/" title="SvelteKit学习-day1">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SvelteKit学习-day1</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/16/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84linux/" title="记一次失败的linux">
-                        <span class="hidden-mobile">记一次失败的linux</span>
+                      <a href="/2025/03/22/SvelteKit-day1/" title="SvelteKit学习-day1">
+                        <span class="hidden-mobile">SvelteKit学习-day1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
