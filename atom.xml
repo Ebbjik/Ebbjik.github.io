@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-04-19T07:35:10.689Z</updated>
+  <updated>2025-04-19T07:36:06.443Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2025/04/19/Ubuntu24-04%E5%AE%89%E8%A3%85%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%95/"/>
     <id>http://example.com/2025/04/19/Ubuntu24-04%E5%AE%89%E8%A3%85%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%95/</id>
     <published>2025-04-19T03:39:17.000Z</published>
-    <updated>2025-04-19T07:35:10.689Z</updated>
+    <updated>2025-04-19T07:36:06.443Z</updated>
     
     <content type="html"><![CDATA[<p>此篇文章介绍如何在ubuntu24.04中安装搜狗输入法</p><span id="more"></span><h1 id="更换fcitx版本"><a href="#更换fcitx版本" class="headerlink" title="更换fcitx版本"></a>更换fcitx版本</h1><p>目前搜狗输入法官网的linux版适用于fcitx4，而ubuntu24.04自带fcitx5（且二者不兼容）所以首先要做的是更换fcitx版本</p><ol><li>卸载ubuntu原有的fcitx5</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt purge fcitx5<br></code></pre></td></tr></table></figure><ol start="2"><li>更新</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt upgrade <br></code></pre></td></tr></table></figure><ol start="3"><li>此时系统应该会提醒有未卸载的fcitx5依赖项,卸载这些依赖包</li></ol><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">sudo apt <span class="hljs-built_in">auto</span>remove <br></code></pre></td></tr></table></figure><ol start="4"><li>此时再安装fcitx</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install fcitx<br></code></pre></td></tr></table></figure><ul><li><p><strong>此时应该会提示未完全卸载的</strong> <code>“fcitx5-chinese-addons-data : 冲突: fcitx-data 但是 1:4.2.9.9-2build2 正要被安装”</code></p></li><li><p>卸载<code>fcitx5-chinese-addons-data</code>即可</p></li></ul><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">sudo</span> apt remove fcitx5-chinese-addons-<span class="hljs-class"><span class="hljs-keyword">data</span></span><br></code></pre></td></tr></table></figure><ul><li>此时再运行安装命令,即可完成安装</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install fcitx<br></code></pre></td></tr></table></figure><h1 id="更换输入法框架"><a href="#更换输入法框架" class="headerlink" title="更换输入法框架"></a>更换输入法框架</h1><p>在语言支持中，更换输入法框架为<code>fcitx4</code></p><p><img src="/2025/03/22/SvelteKit-day1/%E8%BE%93%E5%85%A5%E6%B3%95/%E6%9B%B4%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E6%A1%86%E6%9E%B6.png"></p><h1 id="安装搜狗输入法"><a href="#安装搜狗输入法" class="headerlink" title="安装搜狗输入法"></a>安装搜狗输入法</h1><p>前往<a href="https://shurufa.sogou.com/linux">搜狗输入法官网</a>下载对应的deb安装包即可</p><p>点击下载后会弹出<a href="https://shurufa.sogou.com/linux/guide">官方教程</a></p><p>deb安装包下载好后可以直接双击安装包进行安装，也可以通过命令行</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">sudo dpkg -<span class="hljs-selector-tag">i</span> sogoupinyin_4.<span class="hljs-number">2.1</span>.<span class="hljs-number">145</span>_amd64<span class="hljs-selector-class">.deb</span> <br></code></pre></td></tr></table></figure><p>即可完成安装</p><p>安装好后这样配置</p><p><img src="/2025/03/22/SvelteKit-day1/%E8%BE%93%E5%85%A5%E6%B3%95/%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%95.png"></p><h1 id="配置默认激活输入法"><a href="#配置默认激活输入法" class="headerlink" title="配置默认激活输入法"></a>配置默认激活输入法</h1><p>经过上述步骤后，搜狗输入法已经安装完成，但是存在一个问题，输入法默认是没有激活的</p><p>这导致我们每次开机后要点击<strong>ctrl+space</strong>以激活输入法</p><p>开机后进入fcitx配置</p><p><img src="/2025/03/22/SvelteKit-day1/%E8%BE%93%E5%85%A5%E6%B3%95/%E9%85%8D%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E9%BB%98%E8%AE%A4%E6%BF%80%E6%B4%BB.png"></p><p>经过这样的设置后，开机搜狗输入法就会默认激活了</p><hr><p>参考链接：<a href="https://blog.csdn.net/weixin_44009267/article/details/144539057">24.04的搜狗输入法安装</a></p>]]></content>
     
@@ -29,6 +29,8 @@
     <summary type="html">&lt;p&gt;此篇文章介绍如何在ubuntu24.04中安装搜狗输入法&lt;/p&gt;</summary>
     
     
+    
+    <category term="教程" scheme="http://example.com/categories/%E6%95%99%E7%A8%8B/"/>
     
     
     <category term="linux" scheme="http://example.com/tags/linux/"/>
