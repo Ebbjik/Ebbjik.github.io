@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-04-19T07:36:06.443Z</updated>
+  <updated>2025-04-24T04:54:08.176Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu24.04设置默认终端为kitty</title>
+    <link href="http://example.com/2025/04/24/Ubuntu24-04%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E7%BB%88%E7%AB%AF%E4%B8%BAkitty/"/>
+    <id>http://example.com/2025/04/24/Ubuntu24-04%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E7%BB%88%E7%AB%AF%E4%B8%BAkitty/</id>
+    <published>2025-04-24T04:34:03.000Z</published>
+    <updated>2025-04-24T04:54:08.176Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇文章用于记录如何在ubuntu24.04中安装kitty并将其设置为默认终端</p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>ubuntu默认的终端不支持图片预览，因此想要更换</p><h1 id="安装kitty"><a href="#安装kitty" class="headerlink" title="安装kitty"></a>安装kitty</h1><p><a href="https://sw.kovidgoyal.net/kitty/binary/#binary-install">官方文档</a>写的十分详细,只需要两个步骤即可完成安装</p><ol><li>在终端中运行如下指令</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin<br></code></pre></td></tr></table></figure><ol start="2"><li>运行以下指令以创建快捷方式（可选）</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in</span><br><span class="hljs-comment"># your system-wide PATH)</span><br><span class="hljs-built_in">ln</span> -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/<br><span class="hljs-comment"># Place the kitty.desktop file somewhere it can be found by the OS</span><br><span class="hljs-built_in">cp</span> ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/<br><span class="hljs-comment"># If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file</span><br><span class="hljs-built_in">cp</span> ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/<br><span class="hljs-comment"># Update the paths to the kitty and its icon in the kitty desktop file(s)</span><br>sed -i <span class="hljs-string">&quot;s|Icon=kitty|Icon=<span class="hljs-subst">$(readlink -f ~)</span>/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g&quot;</span> ~/.local/share/applications/kitty*.desktop<br>sed -i <span class="hljs-string">&quot;s|Exec=kitty|Exec=<span class="hljs-subst">$(readlink -f ~)</span>/.local/kitty.app/bin/kitty|g&quot;</span> ~/.local/share/applications/kitty*.desktop<br><span class="hljs-comment"># Make xdg-terminal-exec (and hence desktop environments that support it use kitty)</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;kitty.desktop&#x27;</span> &gt; ~/.config/xdg-terminals.list<br></code></pre></td></tr></table></figure><p>至此kitty就已经安装成功了</p><h1 id="设置kitty为默认终端"><a href="#设置kitty为默认终端" class="headerlink" title="设置kitty为默认终端"></a>设置kitty为默认终端</h1><p>虽然现在已经安装了kitty，但是点击快捷键<code>ctrl+alt+t</code>呼出的还是ubuntu默认的快捷键</p><p>这就需要更换默认终端</p><ol><li>查找kitty的位置</li></ol><p>软件默认安装在<code>/home/&#123;用户名&#125;/.local/kitty.app/bin/kitty</code><br>如果路径不对，就全局搜索名字为<code>kitty</code>的文件，找到那个点击就可以运行终端的文件的路径</p><ol start="2"><li>注册 kitty 作为终端选项</li></ol><p>运行这个命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 50<br>// /usr/bin/kitty 代表第一步中找到的文件的路径，更换为真实路径<br></code></pre></td></tr></table></figure><ol start="3"><li>选择kitty为默认终端</li></ol><p>在终端运行这个命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> update-alternatives --config x-terminal-emulator<br></code></pre></td></tr></table></figure><p>会看到以下页面<br><img src="/2025/03/22/SvelteKit-day1/%E7%BB%88%E7%AB%AF%E4%B8%BAkitty/image.png"></p><p>选择kitty即可（键入1）</p><p>至此，成功安装了kitty并将其设置为了默认终端，用终端快捷键<code>ctrl+alt+t</code>检查，呼出的是kitty终端，操作结束</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;这篇文章用于记录如何在ubuntu24.04中安装kitty并将其设置为默认终端&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Ubuntu24.04安装搜狗输入法</title>
