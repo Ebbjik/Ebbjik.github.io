@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-04-24T04:54:43.125Z</updated>
+  <updated>2025-04-26T06:54:20.120Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu24.04用终端启动cursor</title>
+    <link href="http://example.com/2025/04/26/Ubuntu24-04%E7%94%A8%E7%BB%88%E7%AB%AF%E5%90%AF%E5%8A%A8cursor/"/>
+    <id>http://example.com/2025/04/26/Ubuntu24-04%E7%94%A8%E7%BB%88%E7%AB%AF%E5%90%AF%E5%8A%A8cursor/</id>
+    <published>2025-04-26T06:01:14.000Z</published>
+    <updated>2025-04-26T06:54:20.120Z</updated>
+    
+    <content type="html"><![CDATA[<p>此篇文章介绍如何在ubuntu24.04中用终端终端启动cursor</p><span id="more"></span><h1 id="下载cursor"><a href="#下载cursor" class="headerlink" title="下载cursor"></a>下载cursor</h1><p>前往<a href="https://www.cursor.com/cn/downloads">官网</a>，根据自己的设备下载对应版本的cursor即可</p><p><del>Ubuntu24自然下载的就是Appimage</del></p><h1 id="安装-libfuse2"><a href="#安装-libfuse2" class="headerlink" title="安装 libfuse2"></a>安装 libfuse2</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install libfuse2<br></code></pre></td></tr></table></figure><p><del>其实我不用这个</del></p><p>有一个名为<a href="https://www.spark-app.store/download">星火软件商店</a>的软件<br>性质比较像archlinux的aur，是一个第三方的软件库，用户们会自行打包上传软件<br>里面就有旧版本的cursor，安装后就有了运行环境</p><h1 id="给Appimage执行权限"><a href="#给Appimage执行权限" class="headerlink" title="给Appimage执行权限"></a>给Appimage执行权限</h1><ul><li>命令行方法</li></ul><p>找到Appimage文件的位置并运行如下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /way/to/cusor/father<br><span class="hljs-built_in">chmod</span> +x cursor.AppImage<br></code></pre></td></tr></table></figure><ul><li>图形化方法</li></ul><p>打开文件管理器，找到appimage文件位置，右键文件，在属性中启用允许执行</p><p><img src="/2025/03/22/SvelteKit-day1/%E5%8A%A8cursor/PE.png"></p><p>给予执行权限后双击Appimage就可以启动cursor<br>或者使用命令行启动<code>cursor.AppImage --no-sandbox</code></p><h1 id="添加cursor快捷方式到命令行"><a href="#添加cursor快捷方式到命令行" class="headerlink" title="添加cursor快捷方式到命令行"></a>添加cursor快捷方式到命令行</h1><p>方法来源于cursor论坛中的<a href="https://forum.cursor.com/t/how-to-open-cursor-from-terminal/3757">这篇帖子</a></p><p>如果终端是zsh</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim ~/.zshrc<br></code></pre></td></tr></table></figure><p>然后添加这么一段</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> <span class="hljs-keyword">cursor</span> &#123;<br>  (nohup /<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/<span class="hljs-keyword">cursor</span>.appimage &quot;$@&quot; &gt; /dev/<span class="hljs-keyword">null</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> &amp;)<br>&#125;<br></code></pre></td></tr></table></figure><p>如果是bash</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim ~/.bashrc<br></code></pre></td></tr></table></figure><p>然后添加这么一段</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">cursor</span><span class="hljs-params">()</span></span> &#123;<br>    /home/user/path_to_appimage/Cursor<span class="hljs-selector-class">.AppImage</span> <span class="hljs-string">&quot;$@&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure><p>修改完成后运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.zshrc<br>或是<br><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure><p>至此，就可以运行cursor .<br>来在cursor中打开当前文件夹了</p><hr><p>相关文档：<a href="https://gist.github.com/evgenyneu/5c5c37ca68886bf1bea38026f60603b6">在 Ubuntu 24.04 上安装 Cursor AI 代码编辑器</a><br>这篇文章里面还提到了如何制作快捷方式</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;此篇文章介绍如何在ubuntu24.04中用终端终端启动cursor&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="http://example.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+    <category term="Ubuntu， cursor" scheme="http://example.com/tags/Ubuntu%EF%BC%8C-cursor/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu24.04设置默认终端为kitty</title>
