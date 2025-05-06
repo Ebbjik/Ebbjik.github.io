@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-05-06T14:52:36.630Z</updated>
+  <updated>2025-05-06T14:55:00.403Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://example.com/2025/05/06/ubuntu%E5%AE%9E%E7%8E%B0%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%BE%AA%E7%8E%AF/"/>
     <id>http://example.com/2025/05/06/ubuntu%E5%AE%9E%E7%8E%B0%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%BE%AA%E7%8E%AF/</id>
     <published>2025-05-06T14:28:43.000Z</published>
-    <updated>2025-05-06T14:52:36.630Z</updated>
+    <updated>2025-05-06T14:55:00.403Z</updated>
     
-    <content type="html"><![CDATA[<p>这篇文章用于记录如何在ubuntu24.04中实现循环选择工作区</p><span id="more"></span><h1 id="安装插件管理器"><a href="#安装插件管理器" class="headerlink" title="安装插件管理器"></a>安装插件管理器</h1><p>在终端中运行以下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install gnome-shell-extension-manager<br></code></pre></td></tr></table></figure><h1 id="在插件管理器中安装Workspace-Switcher插件"><a href="#在插件管理器中安装Workspace-Switcher插件" class="headerlink" title="在插件管理器中安装Workspace Switcher插件"></a>在插件管理器中安装Workspace Switcher插件</h1><p>在插件管理器中查找<code>Workspace Switcher</code>并安装即可</p><h1 id="配置插件"><a href="#配置插件" class="headerlink" title="配置插件"></a>配置插件</h1><p>在安装完成后可在已安装插件列表找到他，如图</p><p><img src="/2025/03/22/SvelteKit-day1/%E4%BB%B6%E5%9B%BE.png"></p><p>然后按照截图这样设置即可</p><p><img src="/2025/03/22/SvelteKit-day1/%E4%BB%B6%E8%AE%BE%E7%BD%AE.png"></p>]]></content>
+    <content type="html"><![CDATA[<p>这篇文章用于记录如何在ubuntu24.04中实现循环选择工作区</p><span id="more"></span><h1 id="安装插件管理器"><a href="#安装插件管理器" class="headerlink" title="安装插件管理器"></a>安装插件管理器</h1><p>在终端中运行以下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install gnome-shell-extension-manager<br></code></pre></td></tr></table></figure><h1 id="在插件管理器中安装Workspace-Switcher插件"><a href="#在插件管理器中安装Workspace-Switcher插件" class="headerlink" title="在插件管理器中安装Workspace Switcher插件"></a>在插件管理器中安装Workspace Switcher插件</h1><p>在插件管理器中查找<code>Workspace Switcher</code>并安装即可</p><h1 id="配置插件"><a href="#配置插件" class="headerlink" title="配置插件"></a>配置插件</h1><p>在安装完成后可在已安装插件列表找到他，如图</p><p><img src="/2025/03/22/SvelteKit-day1/%E4%BB%B6%E5%9B%BE.png"></p><p>然后按照截图这样设置即可</p><p><img src="/2025/03/22/SvelteKit-day1/%E4%BB%B6%E8%AE%BE%E7%BD%AE.png"></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;这篇文章用于记录如何在ubuntu24.04中实现循环选择工作区&lt;/p&gt;</summary>
