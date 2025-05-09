@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-05-07T12:27:26.812Z</updated>
+  <updated>2025-05-09T06:12:35.492Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>yazi配置</title>
+    <link href="http://example.com/2025/05/09/yazi%E9%85%8D%E7%BD%AE/"/>
+    <id>http://example.com/2025/05/09/yazi%E9%85%8D%E7%BD%AE/</id>
+    <published>2025-05-09T01:57:37.000Z</published>
+    <updated>2025-05-09T06:12:35.492Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇文章用于记录如何在ubuntu24.04中配装和配置yazi</p><span id="more"></span><h1 id="yazi的安装"><a href="#yazi的安装" class="headerlink" title="yazi的安装"></a>yazi的安装</h1><p><a href="https://yazi-rs.github.io/docs/installation">官方文档</a></p><p>我选择brew安装<br>在终端中运行以下命令</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>yazi ffmpeg sevenzip <span class="hljs-keyword">jq </span>poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font<br></code></pre></td></tr></table></figure><p>除了<code>yazi</code>外这个命令还安装了必要的依赖项，可以删掉，但是可能会对功能造成影响</p><p><del>brew真的是很好的包管理器</del></p><h1 id="yazi的配置"><a href="#yazi的配置" class="headerlink" title="yazi的配置"></a>yazi的配置</h1><h2 id="配置启动命令"><a href="#配置启动命令" class="headerlink" title="配置启动命令"></a>配置启动命令</h2><p><a href="https://yazi-rs.github.io/docs/quick-start">官方文档</a></p><p>在安装完成后在命令行运行<code>yazi</code>就可以启动程序<br>但这还不够</p><p>在终端配置文件<code>.zshrc</code>,也可能是其他，添加以下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">y</span></span>() &#123;<br><span class="hljs-built_in">local</span> tmp=<span class="hljs-string">&quot;<span class="hljs-subst">$(mktemp -t <span class="hljs-string">&quot;yazi-cwd.XXXXXX&quot;</span>)</span>&quot;</span> cwd<br>yazi <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> --cwd-file=<span class="hljs-string">&quot;<span class="hljs-variable">$tmp</span>&quot;</span><br><span class="hljs-keyword">if</span> cwd=<span class="hljs-string">&quot;<span class="hljs-subst">$(command cat -- <span class="hljs-string">&quot;<span class="hljs-variable">$tmp</span>&quot;</span>)</span>&quot;</span> &amp;&amp; [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$cwd</span>&quot;</span> ] &amp;&amp; [ <span class="hljs-string">&quot;<span class="hljs-variable">$cwd</span>&quot;</span> != <span class="hljs-string">&quot;<span class="hljs-variable">$PWD</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br><span class="hljs-built_in">builtin</span> <span class="hljs-built_in">cd</span> -- <span class="hljs-string">&quot;<span class="hljs-variable">$cwd</span>&quot;</span><br><span class="hljs-keyword">fi</span><br><span class="hljs-built_in">rm</span> -f -- <span class="hljs-string">&quot;<span class="hljs-variable">$tmp</span>&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure><p>这可以让我们只用一个<code>y</code>就可以启动<code>yazi</code>，更重要的是在这样配置后，我们在<code>yazi</code>中跳转到某个位置退出后，终端会同步位置</p><h2 id="配置启动器"><a href="#配置启动器" class="headerlink" title="配置启动器"></a>配置启动器</h2><p><a href="https://yazi-rs.github.io/docs/faq/#why-cant-edit">官方文档</a></p><p>在<code>yazi</code>中，快捷键<code>o</code>可以打开文件，而在linux中默认的<code>EDITOR</code>是<code>vim</code></p><p>将其更改为<code>nvim</code></p><p>进行以下配置</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># yazu Setup</span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">EDITOR</span>=<span class="hljs-string">&#x27;nvim&#x27;</span><br></code></pre></td></tr></table></figure><p>至此，<code>yazi</code>就可以使用了</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;这篇文章用于记录如何在ubuntu24.04中配装和配置yazi&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="http://example.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+    <category term="yazi" scheme="http://example.com/tags/yazi/"/>
+    
+  </entry>
   
   <entry>
     <title>nvim实现剪切板与系统互通</title>
