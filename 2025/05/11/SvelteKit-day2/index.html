@@ -27,7 +27,7 @@
 <meta property="og:description" content="这篇文章学习svelte中的Runes">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-11T06:29:00.000Z">
-<meta property="article:modified_time" content="2025-05-11T14:13:22.273Z">
+<meta property="article:modified_time" content="2025-05-12T14:50:11.061Z">
 <meta property="article:author" content="prawn">
 <meta property="article:tag" content="sveltekit">
 <meta property="article:tag" content="前端">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          459 字
+          734 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          4 分钟
+          7 分钟
         
       </span>
     
@@ -281,8 +281,6 @@
                 <p>这篇文章学习<code>svelte</code>中的<code>Runes</code></p>
 <span id="more"></span>
 
-  <link rel="stylesheet" href="../css/day2.css">
-
 <h1 id="什么是Runes"><a href="#什么是Runes" class="headerlink" title="什么是Runes"></a>什么是Runes</h1><p><a target="_blank" rel="noopener" href="https://svelte.dev/docs/svelte/what-are-runes">官方文档</a></p>
 <p>他是一类以<code>$</code>符号开头的特殊符号，有以下几种</p>
 <ul>
@@ -319,7 +317,28 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">let</span> &#123; <span class="hljs-keyword">done</span>, text &#125; = todos[0];<br><br>todos[0].<span class="hljs-keyword">done</span> = !todos[0].<span class="hljs-keyword">done</span>;<br></code></pre></td></tr></table></figure>
 
 <p>像这样得到的<code>done</code>和<code>text</code>就只是普通的js变量</p>
-<p>– TODO: class部分</p>
+<h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><p><code>$state</code>同样可以在类<code>class</code>中使用,无论是公有类还是私有类</p>
+<p><a href="/2025/05/06/linux%E9%85%8D%E7%BD%AEfastfetch/">关于class</a></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Todo</span> &#123;<br>	done = $state(<span class="hljs-literal">false</span>);<br>	text = $state();<br><br>	<span class="hljs-keyword">constructor</span>(text) &#123;<br>		<span class="hljs-keyword">this</span>.text = text;<br>	&#125;<br><br>	reset() &#123;<br>		<span class="hljs-keyword">this</span>.text = <span class="hljs-string">&#x27;&#x27;</span>;<br>		<span class="hljs-keyword">this</span>.done = <span class="hljs-literal">false</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="alert">
+编译器将 done 和 text 这类用$state创建的响应式变量转换为引用私有字段的类原型上的 get / set 方法。这意味着属性是不可枚举的。
+</div>
+
+<p>当你用 <code>for...in</code>、<code>Object.keys()</code> 之类的方法去遍历对象属性时，done 和 text 这两个属性不会被枚举</p>
+<div class="alert">
+  在 JavaScript 中调用方法时，this 的值很重要
+</div>
+
+<h2 id="下面两种调用方法，第一种会报错"><a href="#下面两种调用方法，第一种会报错" class="headerlink" title="下面两种调用方法，第一种会报错"></a>下面两种调用方法，第一种会报错</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&#123;todo.reset&#125;</span>&gt;</span><br>	reset<br><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> todo.reset()&#125;&gt;<br>	reset<br><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>或者在类中定义方法时使用箭头函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Todo</span> &#123;<br>	done = $state(<span class="hljs-literal">false</span>);<br>	text = $state();<br><br>	<span class="hljs-keyword">constructor</span>(text) &#123;<br>		<span class="hljs-keyword">this</span>.text = text;<br>	&#125;<br><br>	reset = () =&gt; &#123;<br>		<span class="hljs-keyword">this</span>.text = <span class="hljs-string">&#x27;&#x27;</span>;<br>		<span class="hljs-keyword">this</span>.done = <span class="hljs-literal">false</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>– TODO: 关于不同函数的blog</p>
+<p>为什么报错，见<a href="/functions">函数之间的区别</a></p>
 <style>
 .side {
   display: inline-block;
@@ -330,6 +349,18 @@
   padding: 1px 2px;
   border-radius: 4px;
   border: 1px solid #555;
+}
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  background-color: #fffbea; /* very light yellow */
 }
 </style>
 
