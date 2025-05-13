@@ -27,7 +27,7 @@
 <meta property="og:description" content="这篇文章学习svelte中的Runes">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-11T06:29:00.000Z">
-<meta property="article:modified_time" content="2025-05-13T04:29:24.961Z">
+<meta property="article:modified_time" content="2025-05-13T14:21:47.318Z">
 <meta property="article:author" content="prawn">
 <meta property="article:tag" content="sveltekit">
 <meta property="article:tag" content="前端">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          971 字
+          1.4k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          9 分钟
+          12 分钟
         
       </span>
     
@@ -346,6 +346,35 @@
 <h2 id="state-snapshot"><a href="#state-snapshot" class="headerlink" title="$state.snapshot"></a>$state.snapshot</h2><p>要拍摄深度反应式<code>$state</code>代理的静态快照，请使用<code>$state.snapshot</code><br><span class="side">实际意思就是为了返回静态对象而不是Proxy</span></p>
 <figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">	<span class="hljs-keyword">let</span> counter = $state(</span></span><span class="hljs-template-variable">&#123; count: 0 &#125;</span><span class="language-xml"><span class="language-javascript">);</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml">	<span class="hljs-keyword">function</span> <span class="hljs-title function_">onclick</span>(<span class="hljs-params"></span>) </span></span><span class="hljs-template-variable">&#123;</span><br><span class="hljs-template-variable">		// Will log `&#123; count: ... &#125;</span><span class="language-xml"><span class="language-javascript"><span class="hljs-string">` rather than `</span><span class="hljs-title class_">Proxy</span> </span></span><span class="hljs-template-variable">&#123; ... &#125;</span><span class="language-xml">`</span><br><span class="language-xml">		console.log($state.snapshot(counter));</span><br><span class="language-xml">	&#125;</span><br><span class="language-xml">  let counter = $state(</span><span class="hljs-template-variable">&#123; count: 0 &#125;</span><span class="language-xml"><span class="language-javascript">);</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter); <span class="hljs-comment">// 输出的是 Proxy </span></span></span><span class="hljs-template-variable">&#123; ... &#125;</span><span class="language-xml"><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>($state.<span class="hljs-title function_">snapshot</span>(counter));</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-comment">// 输出的是普通对象：</span></span></span><span class="hljs-template-variable">&#123; count: 0 &#125;</span><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
+<h2 id="把state传递给函数"><a href="#把state传递给函数" class="headerlink" title="把state传递给函数"></a>把state传递给函数</h2><div class='alert'>JavaScript 是一种按值传递的语言 — 当你调用一个函数时，参数是值而不是变量 。</div>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params"><span class="hljs-attr">a</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">b</span>: <span class="hljs-built_in">number</span></span>) &#123;<br>	<span class="hljs-keyword">return</span> a + b;<br>&#125;<br><br><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">let</span> b = <span class="hljs-number">2</span>;<br><span class="hljs-keyword">let</span> total = <span class="hljs-title function_">add</span>(a, b);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// 3</span><br><br>a = <span class="hljs-number">3</span>;<br>b = <span class="hljs-number">4</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// still 3!</span><br></code></pre></td></tr></table></figure>
+
+<p>实际意思就是，即使传入的变量定义为<code>$state</code>，传入函数中的值也是<code>$state</code>的当前值</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params"><span class="hljs-attr">a</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">b</span>: <span class="hljs-built_in">number</span></span>) &#123;<br>	<span class="hljs-keyword">return</span> a + b;<br>&#125;<br><br><span class="hljs-keyword">let</span> a = $state(<span class="hljs-number">1</span>);<br><span class="hljs-keyword">let</span> b = $state(<span class="hljs-number">2</span>);<br><span class="hljs-keyword">let</span> total = <span class="hljs-title function_">add</span>(a, b);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// 3</span><br><br>a++;<br>b++;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// still 3!</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="跨模块传递"><a href="#跨模块传递" class="headerlink" title="跨模块传递"></a>跨模块传递</h2><div class="alert"> 您可以在 .svelte.js 和 .svelte.ts 文件中声明状态，但只有在未直接重新分配该状态的情况下才能导出该状态。</div>
+
+<p>即这样做是错误的</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">export</span> let <span class="hljs-built_in">count</span> = $state(<span class="hljs-number">0</span>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-built_in">count</span> += <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果跨模块导出，会导致这样的问题</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pf"><br>// <span class="hljs-keyword">state</span>.svelte.js<br>export let count = <span class="hljs-variable">$state</span>(<span class="hljs-number">0</span>);<br><br>// another-file.js<br>import &#123; count &#125; <span class="hljs-keyword">from</span> &#x27;./<span class="hljs-keyword">state</span>.svelte.js&#x27;;<br>console.<span class="hljs-keyword">log</span>(count); // 是一个对象，不是数字<br></code></pre></td></tr></table></figure>
+
+<p>如果你把<code>count</code>导出到别的文件中，Svelte编译器无法知道这个<code>count</code>是响应式的，所以它不会自动处理<code>$.get()</code>和<code>$.set()</code>，就会出错或行为不符合预期。</p>
+<h3 id="避免出错的方法"><a href="#避免出错的方法" class="headerlink" title="避免出错的方法"></a>避免出错的方法</h3><ol>
+<li>不要重新赋值整个状态对象</li>
+</ol>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// state.svelte.js</span><br><span class="hljs-keyword">export</span> const counter = $state(&#123;<br>	<span class="hljs-attr">count</span>: <span class="hljs-number">0</span><br>&#125;);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;<br>	counter.<span class="hljs-built_in">count</span> += <span class="hljs-number">1</span>; <span class="hljs-comment">// ✅ 只修改对象内部属性，不重新赋值</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这种方式可以导出响应式对象，只要你不对整个对象重新赋值（即不写<code>counter = &#123;...&#125;</code>），Svelte 编译器可以处理。</p>
+<ol start="2">
+<li>不导出状态本身，而是导出访问器函数</li>
+</ol>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// state.svelte.js</span><br>let <span class="hljs-built_in">count</span> = $state(<span class="hljs-number">0</span>);<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getCount</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-built_in">count</span>;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-built_in">count</span> += <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这种方式中，<code>count</code>是模块内私有的，外部不能直接访问，只能通过函数间接访问和修改。这样 Svelte 编译器仍能正确转换状态操作。</p>
+<h1 id="derived"><a href="#derived" class="headerlink" title="$derived"></a>$derived</h1><p>–TODO: derived</p>
 <style>
 .side {
   display: inline-block;
