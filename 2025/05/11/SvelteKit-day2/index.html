@@ -27,7 +27,7 @@
 <meta property="og:description" content="这篇文章学习svelte中的Runes">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-11T06:29:00.000Z">
-<meta property="article:modified_time" content="2025-05-12T14:50:11.061Z">
+<meta property="article:modified_time" content="2025-05-13T04:29:24.961Z">
 <meta property="article:author" content="prawn">
 <meta property="article:tag" content="sveltekit">
 <meta property="article:tag" content="前端">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          734 字
+          971 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          7 分钟
+          9 分钟
         
       </span>
     
@@ -318,7 +318,7 @@
 
 <p>像这样得到的<code>done</code>和<code>text</code>就只是普通的js变量</p>
 <h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><p><code>$state</code>同样可以在类<code>class</code>中使用,无论是公有类还是私有类</p>
-<p><a href="/2025/05/06/linux%E9%85%8D%E7%BD%AEfastfetch/">关于class</a></p>
+<p>–TODO: 写一篇js中类的博客<br><a href="/2025/05/06/linux%E9%85%8D%E7%BD%AEfastfetch/">关于class</a></p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Todo</span> &#123;<br>	done = $state(<span class="hljs-literal">false</span>);<br>	text = $state();<br><br>	<span class="hljs-keyword">constructor</span>(text) &#123;<br>		<span class="hljs-keyword">this</span>.text = text;<br>	&#125;<br><br>	reset() &#123;<br>		<span class="hljs-keyword">this</span>.text = <span class="hljs-string">&#x27;&#x27;</span>;<br>		<span class="hljs-keyword">this</span>.done = <span class="hljs-literal">false</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <div class="alert">
@@ -339,6 +339,13 @@
 
 <p>– TODO: 关于不同函数的blog</p>
 <p>为什么报错，见<a href="/functions">函数之间的区别</a></p>
+<h2 id="state-raw"><a href="#state-raw" class="headerlink" title="$state.raw"></a>$state.raw</h2><p>如果你不希望对象和数组深度响应式，可以使用<code>$state.raw</code>。</p>
+<p>使用<code>$state.raw</code> 声明的 State 不能被改变;它只能重新分配。换句话说，如果您想更新对象或数组，而不是分配给对象的属性，或使用 push 等数组方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php">let person = <span class="hljs-variable">$state</span>.<span class="hljs-title function_ invoke__">raw</span>(&#123;<br>	<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Heraclitus&#x27;</span>,<br>	<span class="hljs-attr">age</span>: <span class="hljs-number">49</span><br>&#125;);<br><br><span class="hljs-comment">// this will have no effect</span><br><span class="hljs-comment">//这不会起作用</span><br>person.age += <span class="hljs-number">1</span>;<br><br><span class="hljs-comment">// this will work, because we&#x27;re creating a new person</span><br><span class="hljs-comment">//这会起作用，因为创建了一个新对象</span><br>person = &#123;<br>	name: <span class="hljs-string">&#x27;Heraclitus&#x27;</span>,<br>	age: <span class="hljs-number">50</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="state-snapshot"><a href="#state-snapshot" class="headerlink" title="$state.snapshot"></a>$state.snapshot</h2><p>要拍摄深度反应式<code>$state</code>代理的静态快照，请使用<code>$state.snapshot</code><br><span class="side">实际意思就是为了返回静态对象而不是Proxy</span></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">	<span class="hljs-keyword">let</span> counter = $state(</span></span><span class="hljs-template-variable">&#123; count: 0 &#125;</span><span class="language-xml"><span class="language-javascript">);</span></span><br><span class="language-javascript"><span class="language-xml"></span></span><br><span class="language-javascript"><span class="language-xml">	<span class="hljs-keyword">function</span> <span class="hljs-title function_">onclick</span>(<span class="hljs-params"></span>) </span></span><span class="hljs-template-variable">&#123;</span><br><span class="hljs-template-variable">		// Will log `&#123; count: ... &#125;</span><span class="language-xml"><span class="language-javascript"><span class="hljs-string">` rather than `</span><span class="hljs-title class_">Proxy</span> </span></span><span class="hljs-template-variable">&#123; ... &#125;</span><span class="language-xml">`</span><br><span class="language-xml">		console.log($state.snapshot(counter));</span><br><span class="language-xml">	&#125;</span><br><span class="language-xml">  let counter = $state(</span><span class="hljs-template-variable">&#123; count: 0 &#125;</span><span class="language-xml"><span class="language-javascript">);</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter); <span class="hljs-comment">// 输出的是 Proxy </span></span></span><span class="hljs-template-variable">&#123; ... &#125;</span><span class="language-xml"><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>($state.<span class="hljs-title function_">snapshot</span>(counter));</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-comment">// 输出的是普通对象：</span></span></span><span class="hljs-template-variable">&#123; count: 0 &#125;</span><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
 <style>
 .side {
   display: inline-block;
