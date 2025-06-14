@@ -1,0 +1,882 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prawn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这篇文章学习怎么使用css中的flex用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flex用法">
+<meta property="og:url" content="http://example.com/2025/05/14/flex%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="虾写的blogs">
+<meta property="og:description" content="这篇文章学习怎么使用css中的flex用法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-14T14:33:24.000Z">
+<meta property="article:modified_time" content="2025-05-31T08:32:45.922Z">
+<meta property="article:author" content="prawn">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>flex用法 - 虾写的blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+<link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+<link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+<link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+<link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+
+<link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+
+
+
+
+
+
+
+
+<link  rel="stylesheet" href="/css/flex%E7%94%A8%E6%B3%95.css" />
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="虾写的blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prawnのbolgs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="flex用法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-14 22:33" pubdate>
+          2025年5月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">flex用法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这篇文章学习怎么使用<code>css</code>中的<code>flex</code>用法</p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">官方文档</a></p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p><code>flex</code>，全名为Flexible Box模型，通常被称为<code>flexbox</code>，是一种一维的布局模型<br>我们说 flexbox 是一种一维的布局，是因为一个 flexbox 一次只能处理一个维度上的元素布局，一行或者一列。作为对比的是另外一个二维布局 CSS Grid Layout，可以同时处理行和列上的布局。</p>
+<p>–TODO: 写一篇关于grid的blog</p>
+<h1 id="轴线"><a href="#轴线" class="headerlink" title="轴线"></a>轴线</h1><p><code>flex</code>具有两条轴线–主轴和交叉轴</p>
+<h2 id="主轴"><a href="#主轴" class="headerlink" title="主轴"></a>主轴</h2><p>主轴由<code>flex-direction</code>定义，可取四个枚举值</p>
+<ul>
+<li><code>row</code></li>
+<li><code>row-reverse</code></li>
+<li><code>column</code></li>
+<li><code>column-reverse</code></li>
+</ul>
+<p>两两分组，当设置为前两个时，主轴将沿着<strong>行向</strong>延伸，这时盒子中的元素就会全部排成一行</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">display:</span> &#x27;<span class="hljs-attr">flex</span>&#x27;, <span class="hljs-attr">gap:</span> &#x27;<span class="hljs-attr">10px</span>&#x27; &#125;&#125;&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">background:</span> &#x27;<span class="hljs-attr">lightblue</span>&#x27;, <span class="hljs-attr">padding:</span> &#x27;<span class="hljs-attr">10px</span>&#x27; &#125;&#125;&gt;</span>子项 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">background:</span> &#x27;<span class="hljs-attr">lightgreen</span>&#x27;, <span class="hljs-attr">padding:</span> &#x27;<span class="hljs-attr">10px</span>&#x27; &#125;&#125;&gt;</span>子项 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">background:</span> &#x27;<span class="hljs-attr">lightcoral</span>&#x27;, <span class="hljs-attr">padding:</span> &#x27;<span class="hljs-attr">10px</span>&#x27; &#125;&#125;&gt;</span>子项 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div style="display: flex; gap: 10px;">
+  <div style="background: lightblue; padding: 10px;">子项 1</div>
+  <div style="background: lightgreen; padding: 10px;">子项 2</div>
+  <div style="background: lightcoral; padding: 10px;">子项 3</div>
+</div>
+
+<p>相对的，设置为后两个时，主轴沿着页面的上下方向延伸–也就是<strong>块向</strong>，此时盒子里的每个元素都会独占一行</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display: flex; flex-direction: column; gap: 10px;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background: lightblue; padding: 10px;&quot;</span>&gt;</span>子项 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background: lightgreen; padding: 10px;&quot;</span>&gt;</span>子项 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background: lightcoral; padding: 10px;&quot;</span>&gt;</span>子项 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div style="display: flex; flex-direction: column; gap: 10px;">
+  <div style="background: lightblue; padding: 10px;">子项 1</div>
+  <div style="background: lightgreen; padding: 10px;">子项 2</div>
+  <div style="background: lightcoral; padding: 10px;">子项 3</div>
+</div>
+
+<h2 id="交叉轴"><a href="#交叉轴" class="headerlink" title="交叉轴"></a>交叉轴</h2><p>交叉轴就是垂直于主轴的一条轴线<br>所以如果你的<code>flex-direction</code>（主轴）设成了 <code>row</code> 或者 <code>row-reverse</code> 的话，交叉轴的方向就是沿着上下方向延伸的。<br>如果主轴方向设成了 <code>column</code> 或者 <code>column-reverse</code>，交叉轴就是水平方向。</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ol>
+<li><p>align-items<br><code>align-items</code> 属性用于设置 Flex 容器中子元素在交叉轴（垂直轴）上的对齐方式。它包含很多枚举值,flex布局中常用的有以下四种：<br>更多的见<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-items">官方文档</a></p>
+<ul>
+<li><strong>stretch</strong> (默认值)<br>当子元素没有指定固定尺寸时，子元素会沿着交叉轴方向拉伸，填满父容器在该方向上的空间。</li>
+<li><strong>center</strong><br>flex 元素的外边距框在交叉轴上居中对齐。如果元素的交叉轴尺寸大于 flex 容器，它将在两个方向上等距溢出。</li>
+<li><strong>self-start</strong><br>将元素与容器的主轴起点或交叉轴起点对齐，轴起点的方向对应于元素的起始方向。</li>
+<li><strong>self-end</strong><br> 将元素与容器的主轴末端或交叉轴末端对齐，轴末端的方向对应于元素的结尾方向。</li>
+</ul>
+</li>
+<li><p>justify-content<br><code>justify-content</code> 属性用于设置 Flex 容器中子元素在主轴上的对齐方式。它包含很多枚举值,flex布局中常用的有以下几种：<br>更多的见<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content">官方文档</a></p>
+<ul>
+<li><strong>stretch</strong><br>如果元素沿主轴的组合尺寸小于对齐容器的尺寸，任何尺寸设置为<code>auto</code>的元素都会等比例地增加其尺寸（而不是按比例增加），同时仍然遵守由<code>max-height</code>&#x2F;<code>max-width</code>（或相应功能）施加的约束，以便沿主轴完全填充对齐容器的组合尺寸。</li>
+<li><strong>center</strong><br>伸缩元素向每行中点排列。每行第一个元素到行首的距离将与每行最后一个元素到行尾的距离相同。</li>
+<li><strong>self-start</strong> (默认值)<br>元素紧密地排列在弹性容器的主轴起始侧。仅应用于弹性布局的项目。对于不是弹性容器里的元素，此值将被视为<code>start</code>。</li>
+<li><strong>self-end</strong><br>元素紧密地排列在弹性容器的主轴结束侧。仅应用于弹性布局的元素。对于不是弹性容器里的元素，此值将被视为<code>end</code>。</li>
+<li><strong>space-around</strong><br>在每行上均匀分配弹性元素。相邻元素间距离相同。每行第一个元素到行首的距离和每行最后一个元素到行尾的距离将会是相邻元素之间距离的一半。</li>
+<li><strong>space-between</strong><br>在每行上均匀分配弹性元素。相邻元素间距离相同。每行第一个元素与行首对齐，每行最后一个元素与行尾对齐。</li>
+</ul>
+</li>
+</ol>
+<h1 id="Flex容器"><a href="#Flex容器" class="headerlink" title="Flex容器"></a>Flex容器</h1><p>文档中采用了 flexbox 的区域就叫做 flex 容器。为了创建<code>flex</code> 容器，我们把一个容器的<code>display</code>属性值改为<code>flex</code>或者<code>inline-flex</code>。完成这一步之后，容器中的直系子元素就会变为<strong>flex</strong> 元素。由于所有 CSS 属性都会有一个初始值，所以 flex 容器中的所有 flex 元素都会有下列行为：</p>
+<ul>
+<li>元素排列成一行(<code>flex-direction</code>初始值为<code>row</code>)</li>
+<li>元素从主轴的起始线开始</li>
+<li>元素不会在主维度方向拉伸，但是可以缩小</li>
+<li><code>flex-basis</code>属性为<code>auto</code></li>
+<li><code>flex-wrap</code>属性为<code>nowrap</code></li>
+</ul>
+<h2 id="Flex容器的子元素默认有这样的属性flex-0-1-auto"><a href="#Flex容器的子元素默认有这样的属性flex-0-1-auto" class="headerlink" title="Flex容器的子元素默认有这样的属性flex: 0 1 auto"></a>Flex容器的子元素默认有这样的属性<code>flex: 0 1 auto</code></h2><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-params">flex:</span> <span class="hljs-symbol">&lt;flex-grow&gt;</span> <span class="hljs-symbol">&lt;flex-shrink&gt;</span> <span class="hljs-symbol">&lt;flex-basis&gt;</span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>flex-grow<br>元素是否可以扩张</li>
+<li>flex-shrink<br>元素是否可以收缩</li>
+<li>flex-basis<br>元素的默认大小</li>
+</ul>
+<div class="box">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three <br />has <br />extra <br />text</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>One<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Two<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Three <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>has <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>extra <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box</span> &gt; * &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span> / <span class="hljs-number">0.2</span>);<br>&#125;<br><br><span class="hljs-selector-class">.box</span> &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dotted <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">display</span>: flex;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>row-reverse</code>和<code>column-reverse</code>属性的效果是在原基础上起始线和终止线位置互换</p>
+<div class="box-reverse">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three <br />has <br />extra <br />text</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box-reverse&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>One<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Two<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Three <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>has <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>extra <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box-reverse</span> &gt; * &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span> / <span class="hljs-number">0.2</span>);<br>&#125;<br><br><span class="hljs-selector-class">.box-reverse</span> &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dotted <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">flex-direction</span>: row-reverse;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="用flex-wrap实现多行Flex容器"><a href="#用flex-wrap实现多行Flex容器" class="headerlink" title="用flex-wrap实现多行Flex容器"></a>用<code>flex-wrap</code>实现多行Flex容器</h1><p><code>flex-wrap</code>切换为<code>wrap</code>后，元素会自动换行</p>
+<div class="box-wrap">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three</div>
+</div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box-wrap&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>One<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Two<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Three <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>has <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>extra <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.box-wrap</span> &gt; * &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span> / <span class="hljs-number">0.2</span>);<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.box-wrap</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dotted <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">flex-wrap</span>: wrap;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="简写属性flex-flow"><a href="#简写属性flex-flow" class="headerlink" title="简写属性flex-flow"></a>简写属性<code>flex-flow</code></h1><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-flow">官方文档</a></p>
+<p><code>flex-direction</code>和<code>flex-wrap</code>可以被组合简写为<code>flex-flow</code></p>
+<p>像这样</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-params">flex-flow:</span> <span class="hljs-symbol">&lt;flex-direction&gt;</span> <span class="hljs-symbol">&lt;flex-wrap&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<div class="flex-flow-box">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three</div>
+</div>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><br><span class="hljs-selector-class">.flex-flow-box</span> &gt; * &#123;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span> / <span class="hljs-number">0.2</span>);<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.flex-flow-box</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> dotted <span class="hljs-built_in">rgb</span>(<span class="hljs-number">96</span> <span class="hljs-number">139</span> <span class="hljs-number">168</span>);<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">flex-flow</span>: row wrap;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="flex元素上的属性"><a href="#flex元素上的属性" class="headerlink" title="flex元素上的属性"></a>flex元素上的属性</h1><p>为了更好地控制 flex 元素，有三个属性可以作用于它们：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-grow">flex-grow</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-shrink">flex-shrink</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-basis">flex-basis</a></li>
+</ul>
+<p>这几个flex属性的作用其实就是改变了flex容器中可用空间的行为</p>
+<h2 id="可用空间"><a href="#可用空间" class="headerlink" title="可用空间"></a>可用空间</h2><p>假设在 1 个 500px 的容器中，我们有 3 个 100px 宽的元素，那么这 3 个元素需要占 300px 的宽，剩下 200px 的可用空间。在默认情况下，flexbox 的行为会把这 200px 的空间留在最后一个元素的后面。</p>
+<p>如果期望这些元素能自动地扩展去填充满剩下的空间，那么我们需要去控制可用空间在这几个元素间如何分配，这就是元素上的那些<code>flex</code>属性要做的事。</p>
+<h2 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a><code>flex-basis</code></h2><p><code>flex-basis</code>定义元素的<strong>空间大小</strong>，默认值为<code>auto</code>，其实就是子元素在主轴方向上的大小，它决定了在浏览器分配剩余空间之前，Flex子元素本来的尺寸</p>
+<ul>
+<li><p>默认值为<code>auto</code>，意味着如果没有显式的设置<code>flex-basis</code>，浏览器会根据内容大小或<code>width</code>或<code>height</code>来决定元素的初始尺寸</p>
+</li>
+<li><p><code>flex-basis</code>为<code>auto</code>的基础上，如果用<code>width</code>或<code>height</code>设置了主轴方向上的尺寸，<code>flex-basis</code>就会采用它</p>
+</li>
+<li><p>但如果显式的设置了<code>flex-basis</code>，它会覆盖<code>width</code>或<code>height</code></p>
+</li>
+</ul>
+<p>总结：flex容器中的子元素在主轴方向的尺寸 flex-basis &gt; width&#x2F;height &gt; 内容<br>即，没有设置<code>flex-basis</code>的话，按<code>width</code>&#x2F;<code>height</code>来，<code>width</code>&#x2F;<code>height</code>也没有设置，按内容来</p>
+<h2 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a><code>flex-grow</code></h2><p><code>flex-grow</code>定义了在主轴方向上元素如何’扩展’来填充容器的可用空间</p>
+<p>它接受正数赋值，这个数字不是像素值，而是「比例」，它的默认值是0，此时它不会扩展，设置为正数时，就会拓展以占据可用空间，当有多个元素被设置<code>flex-grow</code>时，他们会按照<code>flex-grow</code>来按比例划分可用区域</p>
+<p>例子：</p>
+<ol>
+<li>元素均等扩展</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>  <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此时，如果容器主轴上有 300px 可用空间，三个子元素会各占：</p>
+<ul>
+<li>每个元素分得：300 &#x2F; 3 &#x3D; 100px</li>
+</ul>
+<ol start="2">
+<li>元素按比例扩展</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item1</span> &#123;<br>  <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-selector-class">.item2</span>,<br><span class="hljs-selector-class">.item3</span> &#123;<br>  <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果有 400px 可用空间，则总比例是 2 + 1 + 1 &#x3D; 4：</p>
+<ul>
+<li><p>item1 分得：400 × (2&#x2F;4) &#x3D; 200px</p>
+</li>
+<li><p>item2 和 .item3 各分得：400 × (1&#x2F;4) &#x3D; 100px</p>
+</li>
+</ul>
+<h2 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a><code>flex-shrink</code></h2><p><code>flex-shrink</code>定义了当Flex容器空间不足时，子元素在主轴方向上如何收缩<br>即空间不足时：谁先让，让多少</p>
+<ul>
+<li>它的默认值是1，代表允许收缩，</li>
+<li><code>0</code>代表允许收缩</li>
+<li>整个正整数同样代表比例，当多个元素都具有这个正整数值时，数值越大，收缩越多</li>
+</ul>
+<p>例子：</p>
+<ol>
+<li>元素均等收缩</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item</span> &#123;<br>  <span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">1</span>;<br>  <span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">200px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>此时，如果容器主轴上宽度为300px，但三个子元素共占据600px，所以他们都要收缩，共需要收缩300px<br>因为<code>flex-shrink</code>都是1，所以均分，各收缩100px</p>
+<ol start="2">
+<li>元素按比例收缩</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item1</span> &#123;<br>  <span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">2</span>;<br>  <span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">200px</span>;<br>&#125;<br><span class="hljs-selector-class">.item2</span>,<br><span class="hljs-selector-class">.item3</span> &#123;<br>  <span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">1</span>;<br>  <span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">200px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同样共需要收缩300px，但是按比例，<code>item1</code>收缩四分之二，即100px，<code>item2,item3</code>各占四分之一，即100px</p>
+<p>但元素不会无限制的收缩，最小尺寸会限制它</p>
+<ul>
+<li><code>min-height</code>&#x2F;<code>min-width</code></li>
+<li>内容自动撑开的尺寸，像是文字或图片</li>
+</ul>
+<h2 id="Flex属性的简写"><a href="#Flex属性的简写" class="headerlink" title="Flex属性的简写"></a>Flex属性的简写</h2><p>以上三种样式可以像这样合并写到一起</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-params">flex:</span> <span class="hljs-symbol">&lt;flex-grow&gt;</span> <span class="hljs-symbol">&lt;flex-shrink&gt;</span> <span class="hljs-symbol">&lt;flex-basis&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>还有预定义的简写形式</p>
+<ul>
+<li>flex: initial<br>相当于<code>flex: 0 1 auto</code></li>
+<li>flex: auto<br>相当于<code>flex: 1 1 auto</code></li>
+<li>flex: none<br>相当于<code>flex: 0 0 auto</code></li>
+<li>flex: &lt;positive-number&gt;<br>相当于<code>flex: positive-number 1 0</code></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
+      
+        <a href="/tags/css/" class="print-no-link">#css</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>flex用法</div>
+      <div>http://example.com/2025/05/14/flex用法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prawn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/05/31/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/13/js%E4%B8%AD%E7%9A%84%E7%B1%BB/" title="js中的类">
+                        <span class="hidden-mobile">js中的类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Ebbjik/Ebbjik.github.io');
+      s.setAttribute('issue-term', 'title');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

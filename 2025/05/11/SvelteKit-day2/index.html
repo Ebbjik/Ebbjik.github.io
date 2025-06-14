@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="prawn">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这篇文章学习svelte中的Runes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SvelteKit-day2">
+<meta property="og:url" content="http://example.com/2025/05/11/SvelteKit-day2/index.html">
+<meta property="og:site_name" content="虾写的blogs">
+<meta property="og:description" content="这篇文章学习svelte中的Runes">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-11T06:29:00.000Z">
+<meta property="article:modified_time" content="2025-05-31T08:18:00.887Z">
+<meta property="article:author" content="prawn">
+<meta property="article:tag" content="sveltekit">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>SvelteKit-day2 - 虾写的blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+<link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+<link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+<link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+<link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+
+<link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+
+
+
+
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="虾写的blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>prawnのbolgs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SvelteKit-day2"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-11 14:29" pubdate>
+          2025年5月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SvelteKit-day2</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这篇文章学习<code>svelte</code>中的<code>Runes</code></p>
+<span id="more"></span>
+
+<h1 id="什么是Runes"><a href="#什么是Runes" class="headerlink" title="什么是Runes"></a>什么是Runes</h1><p><a target="_blank" rel="noopener" href="https://svelte.dev/docs/svelte/what-are-runes">官方文档</a></p>
+<p>他是一类以<code>$</code>符号开头的特殊符号，有以下几种</p>
+<ul>
+<li>$state</li>
+<li>$derived</li>
+<li>$effect</li>
+<li>$props</li>
+<li>$bindable</li>
+<li>$inspect</li>
+<li>$host</li>
+</ul>
+<p>下面分别讲解</p>
+<h1 id="state"><a href="#state" class="headerlink" title="$state"></a>$state</h1><p><a target="_blank" rel="noopener" href="https://svelte.dev/docs/svelte/$state">官方文档</a></p>
+<p>这个符文的作用是创建一个响应式变量<span class="side">响应式就是页面会随着变量的改变自行更改</span>。</p>
+<p>类似于<code>Vue3</code>中的<code>ref</code>，<code>reactive</code></p>
+<p>不同的是他没有用于交互的api，像是<code>ref</code>的<code>.value</code></p>
+<p>举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	let count = $state(0);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;button onclick=&#123;() =&gt; count++&#125;&gt;</span><br><span class="line">	clicks: &#123;count&#125;</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>即在使用上它没有不同</p>
+<h2 id="深度状态-Deep-state"><a href="#深度状态-Deep-state" class="headerlink" title="深度状态 Deep state"></a>深度状态 Deep state</h2><h3 id="什么是深度状态"><a href="#什么是深度状态" class="headerlink" title="什么是深度状态"></a>什么是深度状态</h3><p>简单来说，Deep state 指的是组件或应用中「嵌套层级较深的状态数据结构」，比如嵌套对象或数组中的数据，而不仅仅是表层的简单变量。<br><strong>例子：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let user = &#123;</span><br><span class="line">  name: &quot;Alice&quot;,</span><br><span class="line">  address: &#123;</span><br><span class="line">    city: &quot;Beijing&quot;,</span><br><span class="line">    street: &quot;Main St&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>user.address.city</code> 就是「深层状态」。</p>
+<p><code>svelte</code>允许我们创建这样一个响应式对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let todos = $state([</span><br><span class="line">	&#123;</span><br><span class="line">		done: false,</span><br><span class="line">		text: &#x27;add more todos&#x27;</span><br><span class="line">	&#125;</span><br><span class="line">]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>$state</code>允许我们用数组和简单对象，但像集合和图这样的类不能被代理，但<code>svelte</code>提供了内置的响应式实现，可以从<a target="_blank" rel="noopener" href="https://svelte.dev/docs/svelte/svelte-reactivity">svelte&#x2F;reactivity</a>引入</p>
+<p>此时，修改<code>todos</code>中的某一个变量，ui中依赖他的内容都会随之改变</p>
+<p>如果推送一个对象到数组中，这个对象同样是响应式的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">todos.push(&#123;</span><br><span class="line">	done: false,</span><br><span class="line">	text: &#x27;eat lunch&#x27;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>但是如果你解构一个响应式的值，得到的引用不会是响应式的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let &#123; done, text &#125; = todos[0];</span><br><span class="line"></span><br><span class="line">todos[0].done = !todos[0].done;</span><br></pre></td></tr></table></figure>
+
+<p>像这样得到的<code>done</code>和<code>text</code>就只是普通的js变量</p>
+<h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><p><code>$state</code>同样可以在类<code>class</code>中使用,无论是公有类还是私有类</p>
+<p><a href="/2025/05/13/js%E4%B8%AD%E7%9A%84%E7%B1%BB/">关于class</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Todo &#123;</span><br><span class="line">	done = $state(false);</span><br><span class="line">	text = $state();</span><br><span class="line"></span><br><span class="line">	constructor(text) &#123;</span><br><span class="line">		this.text = text;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	reset() &#123;</span><br><span class="line">		this.text = &#x27;&#x27;;</span><br><span class="line">		this.done = false;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="alert">
+编译器将 done 和 text 这类用$state创建的响应式变量转换为引用私有字段的类原型上的 get / set 方法。这意味着属性是不可枚举的。
+</div>
+
+<p>当你用 <code>for...in</code>、<code>Object.keys()</code> 之类的方法去遍历对象属性时，done 和 text 这两个属性不会被枚举</p>
+<div class="alert">
+  在 JavaScript 中调用方法时，this 的值很重要
+</div>
+
+<h2 id="下面两种调用方法，第一种会报错"><a href="#下面两种调用方法，第一种会报错" class="headerlink" title="下面两种调用方法，第一种会报错"></a>下面两种调用方法，第一种会报错</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=&#123;todo.reset&#125;&gt;</span><br><span class="line">	reset</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=&#123;() =&gt; todo.reset()&#125;&gt;</span><br><span class="line">	reset</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者在类中定义方法时使用箭头函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Todo &#123;</span><br><span class="line">	done = $state(false);</span><br><span class="line">	text = $state();</span><br><span class="line"></span><br><span class="line">	constructor(text) &#123;</span><br><span class="line">		this.text = text;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	reset = () =&gt; &#123;</span><br><span class="line">		this.text = &#x27;&#x27;;</span><br><span class="line">		this.done = false;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>– TODO: 关于不同函数的blog</p>
+<p>为什么报错，见<a href="/functions">函数之间的区别</a></p>
+<h2 id="state-raw"><a href="#state-raw" class="headerlink" title="$state.raw"></a>$state.raw</h2><p>如果你不希望对象和数组深度响应式，可以使用<code>$state.raw</code>。</p>
+<p>使用<code>$state.raw</code> 声明的 State 不能被改变;它只能重新分配。换句话说，如果您想更新对象或数组，而不是分配给对象的属性，或使用 push 等数组方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let person = $state.raw(&#123;</span><br><span class="line">	name: &#x27;Heraclitus&#x27;,</span><br><span class="line">	age: 49</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// this will have no effect</span><br><span class="line">//这不会起作用</span><br><span class="line">person.age += 1;</span><br><span class="line"></span><br><span class="line">// this will work, because we&#x27;re creating a new person</span><br><span class="line">//这会起作用，因为创建了一个新对象</span><br><span class="line">person = &#123;</span><br><span class="line">	name: &#x27;Heraclitus&#x27;,</span><br><span class="line">	age: 50</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="state-snapshot"><a href="#state-snapshot" class="headerlink" title="$state.snapshot"></a>$state.snapshot</h2><p>要拍摄深度反应式<code>$state</code>代理的静态快照，请使用<code>$state.snapshot</code><br><span class="side">实际意思就是为了返回静态对象而不是Proxy</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	let counter = $state(&#123; count: 0 &#125;);</span><br><span class="line"></span><br><span class="line">	function onclick() &#123;</span><br><span class="line">		// Will log `&#123; count: ... &#125;` rather than `Proxy &#123; ... &#125;`</span><br><span class="line">		console.log($state.snapshot(counter));</span><br><span class="line">	&#125;</span><br><span class="line">  let counter = $state(&#123; count: 0 &#125;);</span><br><span class="line">  console.log(counter); // 输出的是 Proxy &#123; ... &#125;</span><br><span class="line">  console.log($state.snapshot(counter));</span><br><span class="line">  // 输出的是普通对象：&#123; count: 0 &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="把state传递给函数"><a href="#把state传递给函数" class="headerlink" title="把state传递给函数"></a>把state传递给函数</h2><div class='alert'>JavaScript 是一种按值传递的语言 — 当你调用一个函数时，参数是值而不是变量 。</div>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function add(a: number, b: number) &#123;</span><br><span class="line">	return a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">let total = add(a, b);</span><br><span class="line">console.log(total); // 3</span><br><span class="line"></span><br><span class="line">a = 3;</span><br><span class="line">b = 4;</span><br><span class="line">console.log(total); // still 3!</span><br></pre></td></tr></table></figure>
+
+<p>实际意思就是，即使传入的变量定义为<code>$state</code>，传入函数中的值也是<code>$state</code>的当前值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function add(a: number, b: number) &#123;</span><br><span class="line">	return a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a = $state(1);</span><br><span class="line">let b = $state(2);</span><br><span class="line">let total = add(a, b);</span><br><span class="line">console.log(total); // 3</span><br><span class="line"></span><br><span class="line">a++;</span><br><span class="line">b++;</span><br><span class="line">console.log(total); // still 3!</span><br></pre></td></tr></table></figure>
+
+<h2 id="跨模块传递"><a href="#跨模块传递" class="headerlink" title="跨模块传递"></a>跨模块传递</h2><div class="alert"> 您可以在 .svelte.js 和 .svelte.ts 文件中声明状态，但只有在未直接重新分配该状态的情况下才能导出该状态。</div>
+
+<p>即这样做是错误的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export let count = $state(0);</span><br><span class="line"></span><br><span class="line">export function increment() &#123;</span><br><span class="line">	count += 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果跨模块导出，会导致这样的问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// state.svelte.js</span><br><span class="line">export let count = $state(0);</span><br><span class="line"></span><br><span class="line">// another-file.js</span><br><span class="line">import &#123; count &#125; from &#x27;./state.svelte.js&#x27;;</span><br><span class="line">console.log(count); // 是一个对象，不是数字</span><br></pre></td></tr></table></figure>
+
+<p>如果你把<code>count</code>导出到别的文件中，Svelte编译器无法知道这个<code>count</code>是响应式的，所以它不会自动处理<code>$.get()</code>和<code>$.set()</code>，就会出错或行为不符合预期。</p>
+<h3 id="避免出错的方法"><a href="#避免出错的方法" class="headerlink" title="避免出错的方法"></a>避免出错的方法</h3><ol>
+<li>不要重新赋值整个状态对象</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// state.svelte.js</span><br><span class="line">export const counter = $state(&#123;</span><br><span class="line">	count: 0</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export function increment() &#123;</span><br><span class="line">	counter.count += 1; // ✅ 只修改对象内部属性，不重新赋值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式可以导出响应式对象，只要你不对整个对象重新赋值（即不写<code>counter = &#123;...&#125;</code>），Svelte 编译器可以处理。</p>
+<ol start="2">
+<li>不导出状态本身，而是导出访问器函数</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// state.svelte.js</span><br><span class="line">let count = $state(0);</span><br><span class="line"></span><br><span class="line">export function getCount() &#123;</span><br><span class="line">	return count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function increment() &#123;</span><br><span class="line">	count += 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这种方式中，<code>count</code>是模块内私有的，外部不能直接访问，只能通过函数间接访问和修改。这样 Svelte 编译器仍能正确转换状态操作。</p>
+<h1 id="derived"><a href="#derived" class="headerlink" title="$derived"></a>$derived</h1><p>–TODO: derived</p>
+<style>
+.side {
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 4px;
+  background-color: #e0f0ff;
+  color: #003366;
+  padding: 1px 2px;
+  border-radius: 4px;
+  border: 1px solid #555;
+}
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  background-color: #fffbea; /* very light yellow */
+}
+</style>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/sveltekit/" class="print-no-link">#sveltekit</a>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SvelteKit-day2</div>
+      <div>http://example.com/2025/05/11/SvelteKit-day2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>prawn</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/05/11/chezmoi%E4%BD%BF%E7%94%A8/" title="chezmoi使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">chezmoi使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/09/yazi%E9%85%8D%E7%BD%AE/" title="yazi配置">
+                        <span class="hidden-mobile">yazi配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Ebbjik/Ebbjik.github.io');
+      s.setAttribute('issue-term', 'title');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
