@@ -19,15 +19,15 @@
   <meta name="author" content="prawn">
   <meta name="keywords" content="">
   
-    <meta name="description" content="概念什么是dom,dom全名Document Object Model（文档对象模型），是浏览器提供的以编程方式操作网页内容的接口 例如： 1&lt;p id&#x3D;&quot;intro&quot;&gt;你好，世界！&lt;&#x2F;p&gt;  12const para &#x3D; document.getElementById(&quot;intro&quot;);para.textContent &#x3D; &amp;quo">
+    <meta name="description" content="本质函数实际上是一个Function对象 函数不定义return默认返回undefined 定义函数方法有多种方法可以定义函数 函数声明(函数语句)12345function name([param[, param[, ... param]]]) &#123; statements &#125;function sayHello() &#123;  console.log(&quot;Hello&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dom_学习">
-<meta property="og:url" content="http://example.com/2025/06/14/dom-%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="js中的函数">
+<meta property="og:url" content="http://example.com/2025/06/15/js%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="虾写的blogs">
-<meta property="og:description" content="概念什么是dom,dom全名Document Object Model（文档对象模型），是浏览器提供的以编程方式操作网页内容的接口 例如： 1&lt;p id&#x3D;&quot;intro&quot;&gt;你好，世界！&lt;&#x2F;p&gt;  12const para &#x3D; document.getElementById(&quot;intro&quot;);para.textContent &#x3D; &amp;quo">
+<meta property="og:description" content="本质函数实际上是一个Function对象 函数不定义return默认返回undefined 定义函数方法有多种方法可以定义函数 函数声明(函数语句)12345function name([param[, param[, ... param]]]) &#123; statements &#125;function sayHello() &#123;  console.log(&quot;Hello&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-06-14T13:43:33.000Z">
-<meta property="article:modified_time" content="2025-06-14T16:03:23.595Z">
+<meta property="article:published_time" content="2025-06-15T08:15:14.000Z">
+<meta property="article:modified_time" content="2025-06-15T14:30:41.056Z">
 <meta property="article:author" content="prawn">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="js">
@@ -35,7 +35,7 @@
   
   
   
-  <title>dom_学习 - 虾写的blogs</title>
+  <title>js中的函数 - 虾写的blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="dom_学习"></span>
+            <span id="subtitle" data-typed-text="js中的函数"></span>
           
         </div>
 
@@ -216,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-06-14 21:43" pubdate>
-          2025年6月14日 晚上
+        <time datetime="2025-06-15 16:15" pubdate>
+          2025年6月15日 下午
         </time>
       </span>
     
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          547 字
+          361 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          5 分钟
+          4 分钟
         
       </span>
     
@@ -276,41 +276,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">dom_学习</h1>
+            <h1 id="seo-header">js中的函数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>什么是dom,dom全名<strong>Document Object Model（文档对象模型）</strong>，是浏览器提供的<strong>以编程方式操作网页内容的接口</strong></p>
-<p>例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;intro&quot;</span>&gt;</span>你好，世界！<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+                <h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>函数实际上是一个<code>Function</code>对象</p>
+<p>函数不定义<code>return</code>默认返回<code>undefined</code></p>
+<h1 id="定义函数方法"><a href="#定义函数方法" class="headerlink" title="定义函数方法"></a>定义函数方法</h1><p>有多种方法可以定义函数</p>
+<h2 id="函数声明-函数语句"><a href="#函数声明-函数语句" class="headerlink" title="函数声明(函数语句)"></a>函数声明(函数语句)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">name</span>(<span class="hljs-params">[param[, param[, ... param]]]</span>) &#123; statements &#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHello</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> para = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;intro&quot;</span>);<br>para.<span class="hljs-property">textContent</span> = <span class="hljs-string">&quot;你好，DOM！&quot;</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h2><p>函数表表达式可以看作是<strong>把函数作为值</strong>的一种用法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> sayHi = <span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hi&quot;</span>);<br>&#125;;<br><br><span class="hljs-keyword">const</span> sayHi = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hi&quot;</span>);<br>&#125;;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name, callback</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello, &quot;</span> + name + <span class="hljs-string">&quot;!&quot;</span>);<br>  <span class="hljs-title function_">callback</span>(); <span class="hljs-comment">// 调用传入的函数</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayBye</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Goodbye!&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">// 把 sayBye 函数作为参数传进去</span><br><span class="hljs-title function_">greet</span>(<span class="hljs-string">&quot;Alice&quot;</span>, sayBye);<br></code></pre></td></tr></table></figure>
 
-<p>这段代码就会把网页中的文字“你好，世界！”变成“你好，DOM！”。</p>
-<p>在网页开发中，较多的用法是通过特定接口获取dom,再对其添加或是删去类名，以动态修改其样式</p>
-<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="从EventTarget继承"><a href="#从EventTarget继承" class="headerlink" title="从EventTarget继承"></a>从<code>EventTarget</code>继承</h2><h3 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener()"></a><code>addEventListener()</code></h3><p>这个方法将指定的监听器注册到 EventTarget 上，当该对象触发指定的事件时，指定的回调函数就会被执行。事件目标可以是一个文档上的元素 Element、Document 和 Window，也可以是任何支持事件的对象（比如 XMLHttpRequest）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">addEventListener</span>(type, listener);<br><span class="hljs-title function_">addEventListener</span>(type, listener, options);<br><span class="hljs-title function_">addEventListener</span>(type, listener, useCapture);<br></code></pre></td></tr></table></figure>
+<p>把函数传给变量，常量当值是函数表达式，传给函数当参数值也是函数表达式</p>
+<p>❓：那为什么要具名定义函数呢，既然赋值给变量了，那都写成<code>function ()&#123;&#125;</code>不就好了<br>💡：因为有时会定义递归函数，像是这样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> factorial = <span class="hljs-keyword">function</span> <span class="hljs-title function_">fact</span>(<span class="hljs-params">n</span>) &#123;<br>  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">return</span> n * <span class="hljs-title function_">fact</span>(n - <span class="hljs-number">1</span>);<br>&#125;;<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">factorial</span>(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 120</span><br></code></pre></td></tr></table></figure>
 
+<p>在写法上这两种非常行接近，区别重要在提升和作用域方面</p>
 <ul>
-<li><p>type<br>字符串，表示监听的事件类型，比如<code>click</code>、<code>keydown</code>、<code>DOMContentLoaded</code></p>
-</li>
-<li><p>listener<br>回调函数，事件发生时被调用</p>
-</li>
-<li><p>options 可选<br>一个对象</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JSON"><span class="hljs-punctuation">&#123;</span><br>capture<span class="hljs-punctuation">:</span> Boolean<span class="hljs-punctuation">,</span> <span class="hljs-comment">//表示 listener 会在该类型的事件捕获阶段传播到该 EventTarget 时触发</span><br>once<span class="hljs-punctuation">:</span> Boolean<span class="hljs-punctuation">,</span> <span class="hljs-comment">// 表示 listener 只会触发一次，执行后自动移除</span><br>passive<span class="hljs-punctuation">:</span> Boolean<span class="hljs-punctuation">,</span> <span class="hljs-comment">// 表示 listener 永远不会调用preventDefault()，用于提升滚动性能</span><br>signal<span class="hljs-punctuation">:</span> AbortSignal <span class="hljs-comment">// 表示当关联的 AbortController 的 abort() 被调用时，移除该 listener</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
-<li><p>useCapture 可选<br>跟上面<code>options</code>中的<code>capture</code>属性一样</p>
-</li>
+<li>函数声明定义的函数是可以在定义前调用的，因为在执行前会被提升到当前作用域的顶部，相对的函数表达式不会提升，所以在定义前调用会报错</li>
 </ul>
-<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="加载和卸载事件"><a href="#加载和卸载事件" class="headerlink" title="加载和卸载事件"></a>加载和卸载事件</h2><h3 id="DOMContentLoaded"><a href="#DOMContentLoaded" class="headerlink" title="DOMContentLoaded"></a>DOMContentLoaded</h3><p>HTML 文档被完全加载和解析完成，但图片、CSS、视频等资源可能还没加载完，此时这个事件就会被触发</p>
-<p>在使用方法上它类似vue3中的<code>mounted</code>，都表示【现在你可以安全的访问和操作DOM元素了】<br>不然就容易出现这种问题</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">const</span> p = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;text&quot;</span>);</span><br><span class="language-javascript">    p.<span class="hljs-property">textContent</span> = <span class="hljs-string">&quot;Hi&quot;</span>; <span class="hljs-comment">// ❌ 此时页面还没加载 &lt;p&gt;，报错或无效</span></span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span>Hello<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>为了避免这种报错，我们要这么做</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;DOMContentLoaded&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// 所有 DOM 元素都已准备好，可以安全操作</span><br>  <span class="hljs-keyword">const</span> p = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;text&quot;</span>);<br>  p.<span class="hljs-property">textContent</span> = <span class="hljs-string">&quot;Hi, DOM!&quot;</span>;<br>&#125;);<br></code></pre></td></tr></table></figure>
-
-<p>– TODO:续写</p>
-
+<h2 id="函数生成器声明"><a href="#函数生成器声明" class="headerlink" title="函数生成器声明"></a>函数生成器声明</h2><h2 id="函数生成器表达式"><a href="#函数生成器表达式" class="headerlink" title="函数生成器表达式"></a>函数生成器表达式</h2><h2 id="箭头函数表达式"><a href="#箭头函数表达式" class="headerlink" title="箭头函数表达式"></a>箭头函数表达式</h2><h2 id="Function构造函数"><a href="#Function构造函数" class="headerlink" title="Function构造函数"></a><code>Function</code>构造函数</h2>
                 
               </div>
             
@@ -357,8 +344,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>dom_学习</div>
-      <div>http://example.com/2025/06/14/dom-学习/</div>
+      <div>js中的函数</div>
+      <div>http://example.com/2025/06/15/js中的函数/</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +357,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年6月14日</div>
+          <div>2025年6月15日</div>
         </div>
       
       
@@ -402,18 +389,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/06/15/js%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/" title="js中的函数">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">js中的函数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/06/12/ES6-%E5%AD%A6%E4%B9%A0/" title="ES6_学习">
-                        <span class="hidden-mobile">ES6_学习</span>
+                      <a href="/2025/06/14/dom-%E5%AD%A6%E4%B9%A0/" title="dom_学习">
+                        <span class="hidden-mobile">dom_学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

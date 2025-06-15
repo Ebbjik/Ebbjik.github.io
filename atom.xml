@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-06-14T16:03:23.595Z</updated>
+  <updated>2025-06-15T14:30:41.056Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js中的函数</title>
+    <link href="http://example.com/2025/06/15/js%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/"/>
+    <id>http://example.com/2025/06/15/js%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0/</id>
+    <published>2025-06-15T08:15:14.000Z</published>
+    <updated>2025-06-15T14:30:41.056Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>函数实际上是一个<code>Function</code>对象</p><p>函数不定义<code>return</code>默认返回<code>undefined</code></p><h1 id="定义函数方法"><a href="#定义函数方法" class="headerlink" title="定义函数方法"></a>定义函数方法</h1><p>有多种方法可以定义函数</p><h2 id="函数声明-函数语句"><a href="#函数声明-函数语句" class="headerlink" title="函数声明(函数语句)"></a>函数声明(函数语句)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">name</span>(<span class="hljs-params">[param[, param[, ... param]]]</span>) &#123; statements &#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayHello</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h2><p>函数表表达式可以看作是<strong>把函数作为值</strong>的一种用法</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> sayHi = <span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hi&quot;</span>);<br>&#125;;<br><br><span class="hljs-keyword">const</span> sayHi = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hi&quot;</span>);<br>&#125;;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name, callback</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello, &quot;</span> + name + <span class="hljs-string">&quot;!&quot;</span>);<br>  <span class="hljs-title function_">callback</span>(); <span class="hljs-comment">// 调用传入的函数</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sayBye</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Goodbye!&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">// 把 sayBye 函数作为参数传进去</span><br><span class="hljs-title function_">greet</span>(<span class="hljs-string">&quot;Alice&quot;</span>, sayBye);<br></code></pre></td></tr></table></figure><p>把函数传给变量，常量当值是函数表达式，传给函数当参数值也是函数表达式</p><p>❓：那为什么要具名定义函数呢，既然赋值给变量了，那都写成<code>function ()&#123;&#125;</code>不就好了<br>💡：因为有时会定义递归函数，像是这样</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> factorial = <span class="hljs-keyword">function</span> <span class="hljs-title function_">fact</span>(<span class="hljs-params">n</span>) &#123;<br>  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">return</span> n * <span class="hljs-title function_">fact</span>(n - <span class="hljs-number">1</span>);<br>&#125;;<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">factorial</span>(<span class="hljs-number">5</span>)); <span class="hljs-comment">// 120</span><br></code></pre></td></tr></table></figure><p>在写法上这两种非常行接近，区别重要在提升和作用域方面</p><ul><li>函数声明定义的函数是可以在定义前调用的，因为在执行前会被提升到当前作用域的顶部，相对的函数表达式不会提升，所以在定义前调用会报错</li></ul><h2 id="函数生成器声明"><a href="#函数生成器声明" class="headerlink" title="函数生成器声明"></a>函数生成器声明</h2><h2 id="函数生成器表达式"><a href="#函数生成器表达式" class="headerlink" title="函数生成器表达式"></a>函数生成器表达式</h2><h2 id="箭头函数表达式"><a href="#箭头函数表达式" class="headerlink" title="箭头函数表达式"></a>箭头函数表达式</h2><h2 id="Function构造函数"><a href="#Function构造函数" class="headerlink" title="Function构造函数"></a><code>Function</code>构造函数</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;本质&quot;&gt;&lt;a href=&quot;#本质&quot; class=&quot;headerlink&quot; title=&quot;本质&quot;&gt;&lt;/a&gt;本质&lt;/h1&gt;&lt;p&gt;函数实际上是一个&lt;code&gt;Function&lt;/code&gt;对象&lt;/p&gt;
+&lt;p&gt;函数不定义&lt;code&gt;return&lt;/code&gt;默认返回&lt;co</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="http://example.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="前端" scheme="http://example.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="js" scheme="http://example.com/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>dom_学习</title>
@@ -452,28 +479,6 @@
     
     
     <category term="github" scheme="http://example.com/tags/github/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次失败的linux</title>
-    <link href="http://example.com/2025/03/16/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84linux/"/>
-    <id>http://example.com/2025/03/16/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84linux/</id>
-    <published>2025-03-16T13:57:13.000Z</published>
-    <updated>2025-05-31T08:18:00.892Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="事情起因"><a href="#事情起因" class="headerlink" title="事情起因"></a>事情起因</h1><p>经过在移动硬盘安装linux mint并顺利在笔记本运行后，虾决定在即将组装的主机上安装arch linux 并安装hyprland，然而事情并没有想象中那么顺利</p><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在安装arch的过程中，教程可以通过命令行连接到wifi，而我不行，后来是通过usb线从手机联网的（其实这里就应该意识到的），在安装上后，发现压根没有wifi按钮，意识到，没有驱动，而linux的驱动似乎不生效，主板官网的驱动也只支持windows<br>ps：主板用的华硕 b650 ayw，上面的网卡是 联发科 7902<br>也想过买一个免驱动的usb无线网卡，而市面上的大多数都只支持到6.5版本的内核，而我安装的ubuntu 24.04 内核版本为6.11，没有可用的</p><h1 id="最后的决定"><a href="#最后的决定" class="headerlink" title="最后的决定"></a>最后的决定</h1><p>在多次尝试无果后，决定放弃，台式机的硬件不比笔记本，在安装中会遇到各种各样的问题，最后决定用回windows</p><h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>Q：为什么想要linux？<br>A：并不是因为linux的低占用或是炫酷的hyprland，主要是身为一名代码开发者，我需要在电脑上安装各种各样的开发环境，而windows的安装体验令我痛苦不已，相比linux只需一行<code> apt install</code>或是<code>pacman -S install</code>就可以解决的事情，在windows上的安装简直就是折磨。即使这次用回windows，我也不会再通过那种方法进行开发</p><p>Q：那你要怎么做<br>A：docker，在vscode存在插件允许我们在容器内进行代码开发，这样一来就不必在windows配置开发环境，对环境的更换也方便得多，也不必担心不同开发环境中的冲突（这个题材将会在后续发数个博客，给自己立flag）</p><h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>此次失败的原因主要是没有实现了解所买硬件对linux的支持情况，谨以此文章警示以后的自己和其他想要安装linux的人</p><h1 id="后记-4-26"><a href="#后记-4-26" class="headerlink" title="后记-4.26"></a>后记-4.26</h1><p>ax210加上一块pcie网卡转接板，什么都解决了，还是Intel驱动全<br>最后安装了Ubuntu，无需安装任何驱动，直接可用，WiFi，BlueTooth功能全部正常</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;事情起因&quot;&gt;&lt;a href=&quot;#事情起因&quot; class=&quot;headerlink&quot; title=&quot;事情起因&quot;&gt;&lt;/a&gt;事情起因&lt;/h1&gt;&lt;p&gt;经过在移动硬盘安装linux mint并顺利在笔记本运行后，虾决定在即将组装的主机上安装arch linux 并安装hypr</summary>
-      
-    
-    
-    
-    
-    <category term="linux" scheme="http://example.com/tags/linux/"/>
     
   </entry>
   
