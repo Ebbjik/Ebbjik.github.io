@@ -27,7 +27,7 @@
 <meta property="og:description" content="本质函数实际上是一个Function对象 函数不定义return默认返回undefined 定义函数方法有多种方法可以定义函数 函数声明(函数语句)12345function name([param[, param[, ... param]]]) &#123; statements &#125;function sayHello() &#123;  console.log(&quot;Hello&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-15T08:15:14.000Z">
-<meta property="article:modified_time" content="2025-06-15T14:31:06.745Z">
+<meta property="article:modified_time" content="2025-06-22T13:37:45.536Z">
 <meta property="article:author" content="prawn">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="js">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          364 字
+          1.1k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          4 分钟
+          10 分钟
         
       </span>
     
@@ -297,7 +297,73 @@
 <ul>
 <li>函数声明定义的函数是可以在定义前调用的，因为在执行前会被提升到当前作用域的顶部，相对的函数表达式不会提升，所以在定义前调用会报错</li>
 </ul>
-<h2 id="函数生成器声明"><a href="#函数生成器声明" class="headerlink" title="函数生成器声明"></a>函数生成器声明</h2><h2 id="函数生成器表达式"><a href="#函数生成器表达式" class="headerlink" title="函数生成器表达式"></a>函数生成器表达式</h2><h2 id="箭头函数表达式"><a href="#箭头函数表达式" class="headerlink" title="箭头函数表达式"></a>箭头函数表达式</h2><h2 id="Function构造函数"><a href="#Function构造函数" class="headerlink" title="Function构造函数"></a><code>Function</code>构造函数</h2><p>–TODO: 续写</p>
+<h2 id="函数生成器声明"><a href="#函数生成器声明" class="headerlink" title="函数生成器声明"></a>函数生成器声明</h2><h2 id="函数生成器表达式"><a href="#函数生成器表达式" class="headerlink" title="函数生成器表达式"></a>函数生成器表达式</h2><h2 id="箭头函数表达式"><a href="#箭头函数表达式" class="headerlink" title="箭头函数表达式"></a>箭头函数表达式</h2><p>写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">ceshi</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;nihao&quot;</span>);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>其中括号中的是参数，支持剩余参数、默认参数和解构，始终需要括号</p>
+<ul>
+<li>剩余参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">f</span> = (<span class="hljs-params">a, b, ...r</span>) =&gt; [a, b, r];<br><span class="hljs-title function_">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>); <span class="hljs-comment">// [1, 2, [3, 4, 5]]</span><br></code></pre></td></tr></table></figure>
+
+<p>其中<code>a</code>、<code>b</code>是普通参数,<code>...r</code>表示接受剩余的所有参数，组成一个数组</p>
+<ul>
+<li>默认参数</li>
+</ul>
+<p>当函数未传入对应参数或是传入<code>undefined</code>时，他将会使用默认的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">a = <span class="hljs-number">100</span></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<br>&#125;<br><br><span class="hljs-title function_">foo</span>(); <span class="hljs-comment">// 输出 100</span><br><span class="hljs-title function_">foo</span>(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// 输出 100</span><br><span class="hljs-title function_">foo</span>(<span class="hljs-number">0</span>); <span class="hljs-comment">// 输出 0（不会使用默认值）</span><br></code></pre></td></tr></table></figure>
+
+<p>只有<code>undefined</code>可以，其余的假值是不起作用的<br>把带默认值的参数放到前面再试图跳过他是不合法的，像是这样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>, c = <span class="hljs-number">3</span></span>) &#123; ... &#125;<br><span class="hljs-title function_">f</span>(<span class="hljs-number">1</span>, , <span class="hljs-number">3</span>); <span class="hljs-comment">// ❌ 语法错误</span><br><span class="hljs-title function_">f</span>(<span class="hljs-number">1</span>,<span class="hljs-literal">undefined</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">//必须显式的传递`undefined`</span><br></code></pre></td></tr></table></figure>
+
+<p>但可以把带默认值的参数放到最后</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">a, b = <span class="hljs-number">20</span></span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a, b);<br>&#125;<br><br><span class="hljs-title function_">foo</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// ✅ 输出：10 20</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>解构赋值</p>
+<p>数组解构</p>
+<ul>
+<li>基本用法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-keyword">const</span> [a, b, c] = arr;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// 1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b); <span class="hljs-comment">// 2</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(c); <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>跳过元素</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [x, , z] = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>];<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x, z); <span class="hljs-comment">// 10 30</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>默认值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [a = <span class="hljs-number">100</span>, b = <span class="hljs-number">200</span>] = [<span class="hljs-number">1</span>];<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a, b); <span class="hljs-comment">// 1 200</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>嵌套解构</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [a, [b, c]] = [<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]];<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a, b, c); <span class="hljs-comment">// 1 2 3</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>箭头函数没有独立的 <code>this</code>、<code>arguments</code> 和 <code>super</code> 绑定，并且不可被用作方法。</p>
+<p><code>this</code>的值取决于它出现的上下文：函数、类或全局</p>
+<ul>
+<li><p>函数上下文<br>在函数内部，this 的值取决于函数如何被调用，<code>this</code>的值不是拥有此函数作为自己属性的对象，而是用于调用此函数的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj4 = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;obj4&quot;</span>,<br>  <span class="hljs-title function_">getThis</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;<br>  &#125;,<br>&#125;;<br><span class="hljs-keyword">const</span> obj5 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;obj5&quot;</span> &#125;;<br>obj6.<span class="hljs-property">getThis</span> = obj4.<span class="hljs-property">getThis</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj5.<span class="hljs-title function_">getThis</span>()); <span class="hljs-comment">// &#123; name: &#x27;obj5&#x27;, getThis: [Function: getThis] &#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>普通函数的<code>this</code>是‘调用时决定的’，而箭头函数的<code>this</code>是‘定义时决定的’，永远集成自外层作用域，不能改变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span>,<br>  <span class="hljs-attr">sayHi1</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>); <span class="hljs-comment">// this 指向 obj，输出 &quot;Alice&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">sayHi2</span>: <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>); <span class="hljs-comment">// this 不是 obj，而是外部（window/undefined）</span><br>  &#125;,<br>&#125;;<br>obj.<span class="hljs-title function_">sayHi1</span>(); <span class="hljs-comment">// &quot;Alice&quot;</span><br>obj.<span class="hljs-title function_">sayHi2</span>(); <span class="hljs-comment">// undefined（不是你期望的）</span><br></code></pre></td></tr></table></figure>
+
+<p>上面的<code>obj</code>只是一个变量对象，箭头函数从他那里得不到<code>this</code>，只能再往上，也就是全局</p>
+</li>
+</ul>
+<p><code>arguments</code>同样从上层继承<del>事实上只有函数</del>，<code>arguments</code>是一个对应于传递给函数的参数的类数组对象。<br>在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments">官方文档</a>中，推荐编写兼容ES6的代码时使用<strong>剩余参数</strong></p>
+<p><code>super</code>从它被定义的上下文获取<del>包含它的类</del></p>
+<p>这三个东西，都要从外层作用域继承，是因为ES6设计箭头函数时，目的就是<strong>简洁、闭包友好、绑定外层this</strong>，因此：</p>
+<ul>
+<li>它<strong>不创建自己的执行上下文</strong></li>
+<li>它<strong>直接使用它定义时的“父作用域”的上下文</strong>。</li>
+<li>所以，它也就没有自己的 <code>this</code>、<code>arguments</code>、<code>super</code>、<code>new.target</code>。</li>
+</ul>
+<h2 id="Function构造函数"><a href="#Function构造函数" class="headerlink" title="Function构造函数"></a><code>Function</code>构造函数</h2><p>–TODO: 续写</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
 
                 
               </div>
